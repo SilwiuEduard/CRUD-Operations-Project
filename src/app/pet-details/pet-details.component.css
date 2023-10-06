@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&family=Roboto&family=Young+Serif&display=swap");
+
+/* LEFT IMG */
+.container-view {
+  height: 640px;
+  position: absolute;
+  margin-left: 50px;
+}
+.pets-img {
+  margin-right: 90px;
+  max-height: 100%;
+}
+
+.container {
+  font-family: young serif;
+  /* margin-top: 110px; */
+  margin-left: 370px;
+  display: grid;
+}
+
+/* LEFT IMG END */
+
+.grid-container {
+  display: grid;
+  grid-template-rows: repeat(9, 25px);
+  grid-template-columns: 150px 350px 250px;
+  /* repeat(3, 250px); */
+  font-size: 16px;
+}
+
+.index,
+.categoryI,
+.categoryN,
+.name,
+.tagI,
+.tagN,
+.status,
+.tags,
+.category {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.tags,
+.category {
+  font-size: 16;
+}
+
+.img {
+  margin-left: 50px;
+}

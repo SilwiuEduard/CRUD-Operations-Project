@@ -1,0 +1,12 @@
+.container_home {
+  margin-left: 0;
+  margin-top: -20px;
+  padding: 0;
+  width: 100vw;
+  height: 80vw;
+}
+
+.home_icon {
+  width: 100vw;
+  max-height: 100%;
+}

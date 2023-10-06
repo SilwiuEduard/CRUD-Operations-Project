@@ -1,0 +1,29 @@
+<header class="main-header">
+  <div>
+    <a routerLink="/" class="main-header__brand">
+      <img src="../assets/petstore_icon.png" alt="petstore_icon" />
+    </a>
+  </div>
+  <nav class="main-nav">
+    <ul class="main-nav__items">
+      <li class="main-nav__item">
+        <a routerLink="list" routerLinkActive="active">Pet List</a>
+      </li>
+
+      <!-- <li class="main-nav__item">
+        <a routerLink="list/:id" routerLinkActive="active">Pet Details</a>
+      </li> -->
+
+      <li class="main-nav__item">
+        <a routerLink="add" routerLinkActive="active">Add Pet</a>
+      </li>
+      <li class="main-nav__item">
+        <a routerLink="edit" routerLinkActive="active">Edit Pet</a>
+      </li>
+
+      <li class="main-nav__item">
+        <a style="cursor: pointer" (click)="onFetchData()">//fetchdata</a>
+      </li>
+    </ul>
+  </nav>
+</header>

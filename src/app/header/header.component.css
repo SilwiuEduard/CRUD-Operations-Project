@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&family=Roboto&family=Young+Serif&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+.main-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #f7f2ee;
+  padding: 0.5rem 1rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-header__brand img {
+  height: 10rem;
+  vertical-align: middle;
+  /* width: 100%; */
+}
+
+.main-nav {
+  display: flex;
+}
+
+.main-nav__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  font-size: 1.8rem;
+  font-family: young serif;
+}
+
+.main-nav__item {
+  margin: 0 1rem;
+}
+
+.main-nav__item a {
+  text-decoration: none;
+  color: #0e4f1f;
+  font-weight: bold;
+  padding: 0.2rem 0;
+}
+
+.main-nav__item a:hover,
+.main-nav__item a:active {
+  color: #e87725;
+  border-bottom: 5px solid #e87725;
+}
+
+.active {
+  border-bottom: 5px solid #e87725;
+}

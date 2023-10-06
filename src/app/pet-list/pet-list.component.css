@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&family=Roboto&family=Young+Serif&display=swap");
+
+span img {
+  width: 25px;
+  height: 25px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: young serif;
+}
+
+.background_img {
+  height: 80vw;
+  position: fixed;
+  z-index: -1;
+}
+
+.background_img img {
+  width: 100vw;
+  max-height: 100%;
+}
+
+.addNewPet {
+  margin-top: 80px;
+  margin-bottom: 5px;
+}
+
+.mat-mdc-table {
+  background-color: #fff4;
+  box-shadow: 0 0.4rem 0.8rem #0005;
+  border-radius: 0.8rem;
+}
+
+.table__body {
+  width: 95%;
+  max-height: calc(89%-0.8rem);
+  margin: 0.8rem auto;
+  border-radius: 0.6rem;
+}
+
+table {
+  width: 100%;
+}
+
+table th {
+  position: sticky;
+  background-color: #dcd3f1fe;
+  opacity: 0.7;
+}
+
+tr:nth-child(even) {
+  background-color: #aa34340b;
+}
+
+tr:hover {
+  background-color: rgba(216, 226, 184, 0.4);
+}
+
+/* td.Available {
+  background-color: #86e49d;
+  color: #006b21;
+  opacity: 0.7;
+}
+
+td.Sold {
+  background-color: #d893a3;
+  color: #b30021;
+}
+
+td.Pending {
+  background-color: #ebc474;
+} */
+
+th:hover {
+  color: #6c00bd;
+}
+
+/* preluat  */
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

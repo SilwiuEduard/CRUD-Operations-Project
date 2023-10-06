@@ -1,0 +1,34 @@
+<div class="container-view">
+  <img src="../../assets/pets.png" class="pets-img" />
+</div>
+
+<div class="container" style="margin-top: 130px">
+  <h2>Pet details</h2>
+  <div class="grid-container" style="margin-top: 20px">
+    <div class="index">Index:</div>
+    <div class="index__prop">{{ pet.id }}</div>
+    <div class="img" style="grid-column: 3 / 4; grid-row: 1 / 10">
+      <img
+        src="{{ pet.photoUrls }}"
+        alt="{{ pet.name }}"
+        style="max-height: 225px"
+      />
+    </div>
+    <div class="category">Category</div>
+    <div class="empty"></div>
+    <div class="categoryI">Category Index:</div>
+    <div class="categoryI__prop">{{ pet.category.id }}</div>
+    <div class="categoryN">Category Name:</div>
+    <div class="categoryN__prop">{{ pet.category.name }}</div>
+    <div class="name">Name:</div>
+    <div class="name__prop">{{ pet.name }}</div>
+    <div class="tags">Tags</div>
+    <div class="empty"></div>
+    <div class="tagI">Tag Index:</div>
+    <div class="tagI__prop">{{ pet.tags['{{ pet.id }}'].id }}</div>
+    <div class="tagN">Tag Name:</div>
+    <div class="tagN__prop">{{ pet.tags['{{ pet.id }}'].name }}</div>
+    <div class="status">Status:</div>
+    <div class="status__prop">{{ pet.status }}</div>
+  </div>
+</div>
