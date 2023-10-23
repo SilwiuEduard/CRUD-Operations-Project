@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
@@ -40,7 +39,7 @@ export class DataStorageService {
   fetchPets() {
     const pets = this.petService.getPetsArray();
     this.http
-      .get<PetModel[]>(`${this.apiHost}/${this.apiVersion}/pet/{petId}`)
+      .get<PetModel[]>(`${this.apiHost}/${this.apiVersion}/pet/{pet.id}`)
       .subscribe((petsResponse) => {
         console.log(petsResponse);
         this.petService.setPets(petsResponse);
@@ -49,7 +48,7 @@ export class DataStorageService {
   deletePets() {
     const pets = this.petService.getPetsArray();
     this.http
-      .delete<PetModel[]>(`${this.apiHost}/${this.apiVersion}/pet/{petId}`)
+      .delete<PetModel[]>(`${this.apiHost}/${this.apiVersion}/pet/{pet.id}`)
       .subscribe((petsResponse) => {
         console.log(petsResponse);
         this.petService.setPets(petsResponse);

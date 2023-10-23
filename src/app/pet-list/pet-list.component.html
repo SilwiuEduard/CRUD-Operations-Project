@@ -1,48 +1,42 @@
-<h1>Pet Store Inventory</h1>
-
-<div class="background_img">
+<div class="background_img" style="margin-top: -240px">
   <img src="../../../assets/home_icon2.jpeg" />
 </div>
 
-<!-- ! TO IMPLEMENT - FILTER DATA ON TABLE -->
-<!-- <mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="" #input />
-</mat-form-field> -->
+<main class="table__wrapper">
+  <section class="table__header">
+    <h2>Pet Store Inventory</h2>
+  </section>
 
-<main class="table">
-  <div class="body">
-    <section class="table__body">
-      <table mat-table [dataSource]="hardcodePetArray">
-        <!-- Table Header - Column name: Index -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>Index</th>
-          <td mat-cell *matCellDef="let pet">{{ pet.id }}</td>
-        </ng-container>
-
-        <!-- Table Header - Column name: NAME -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let pet">
-            {{ pet.name }}
+  <section class="table__body">
+    <table>
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>
+            Status
+            <select id="statusSelect">
+              <option value="all">All</option>
+              <option value="available">Available</option>
+              <option value="pending">Pending</option>
+              <option value="sold">Sold</option>
+            </select>
+          </th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pet of hardcodePetArray; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ pet.name }}</td>
+          <td>
+            <!-- ! DE ADAUGAT ngCLass CORESPUNZATOR LA PET STATUS -->
+            <span class="status">{{ pet.status }}</span>
           </td>
-        </ng-container>
-
-        <!-- Table Header - Column name: STATUS -->
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell *matCellDef="let pet">
-            {{ pet.status }}
-          </td></ng-container
-        >
-        <!-- Table Header - Column name: ACTIONS -->
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef>Actions</th>
-
-          <!-- VIEW PET DETAILS -->
-          <td mat-cell *matCellDef="let pet">
+          <td class="btn-group">
+            <!-- VIEW PET DETAILS -->
             <span>
-              <a routerLink="/list/{{ pet.id }}">
+              <a>
                 <img
                   src="../../../assets/eye.png"
                   style="cursor: pointer"
@@ -51,27 +45,17 @@
             <!-- EDIT PET DETAILS -->
             <span
               ><a
-                (click)="onEditPetClick('{{pet.id}}')"
-                routerLink="/list/{{ pet.id }}/edit"
-              >
-                <img
+                ><img
                   src="../../../assets/edit.png"
                   style="cursor: pointer" /></a
             ></span>
             <!-- DELETE SINGLE PET -->
             <span
-              ><img
-                src="../../../assets/trash.png"
-                (click)="OnDeletePet('{{pet.id}}')"
-                style="cursor: pointer"
+              ><img src="../../../assets/trash.png" style="cursor: pointer"
             /></span>
           </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-    </section>
-  </div>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 </main>

@@ -13,6 +13,7 @@
         style="margin-top: 50px"
         (ngSubmit)="onAddSubmit(formAddRef)"
         #formAddRef="ngForm"
+        autocomplete="off"
       >
         <div class="form-group">
           <label for="index">Pet Index*</label>
@@ -21,6 +22,7 @@
             id="index"
             class="form-control"
             ngModel
+            placeholder="Please enter a pet index."
             name="index"
             required
             pattern="^[1-9]\d*$"

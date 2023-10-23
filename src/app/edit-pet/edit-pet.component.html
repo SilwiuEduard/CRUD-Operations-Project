@@ -13,6 +13,7 @@
         style="margin-top: 50px"
         (ngSubmit)="onEditPet(formEditRef)"
         #formEditRef="ngForm"
+        autocomplete="off"
       >
         <div class="form-group">
           <label for="index">Pet Index*</label>
@@ -25,6 +26,8 @@
             required
             pattern="^[1-9]\d*$"
           />
+          <!-- #petIndex
+            [value]="pet.id" -->
         </div>
 
         <!-- Warning Window in case of invalid data -->

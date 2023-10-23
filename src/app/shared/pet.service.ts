@@ -25,8 +25,8 @@ export class PetService {
       'Spike',
       ['https://www.dogmagazin.ro/wp-content/uploads/2020/10/bucovinean-1.jpg'],
       [
-        { id: 1, name: 'Fluffy' },
-        // { id: 2, name: 'Energic' },
+        // { id: 1, name: 'Fluffy' },
+        { id: 2, name: 'Energic' },
       ],
       'Pending'
     ),
@@ -39,6 +39,89 @@ export class PetService {
       ],
       [{ id: 2, name: 'Energic' }],
       'Sold'
+    ),
+    new PetModel(
+      4,
+      { id: 2, name: 'Cat' },
+      'Flixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+      [
+        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
+      ],
+      [{ id: 3, name: 'Lazy' }],
+      'Available'
+    ),
+
+    // to delete
+
+    new PetModel(
+      4,
+      { id: 2, name: 'Cat' },
+      'Flix',
+      [
+        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
+      ],
+      [{ id: 3, name: 'Lazy' }],
+      'Available'
+    ),
+    new PetModel(
+      4,
+      { id: 2, name: 'Cat' },
+      'Flix',
+      [
+        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
+      ],
+      [{ id: 3, name: 'Lazy' }],
+      'Available'
+    ),
+    new PetModel(
+      4,
+      { id: 2, name: 'Cat' },
+      'Flix',
+      [
+        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
+      ],
+      [{ id: 3, name: 'Lazy' }],
+      'Available'
+    ),
+    new PetModel(
+      4,
+      { id: 2, name: 'Cat' },
+      'Flix',
+      [
+        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
+      ],
+      [{ id: 3, name: 'Lazy' }],
+      'Available'
+    ),
+    new PetModel(
+      4,
+      { id: 2, name: 'Cat' },
+      'Flix',
+      [
+        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
+      ],
+      [{ id: 3, name: 'Lazy' }],
+      'Available'
+    ),
+    new PetModel(
+      4,
+      { id: 2, name: 'Cat' },
+      'Flix',
+      [
+        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
+      ],
+      [{ id: 3, name: 'Lazy' }],
+      'Available'
+    ),
+    new PetModel(
+      4,
+      { id: 2, name: 'Cat' },
+      'Flix',
+      [
+        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
+      ],
+      [{ id: 3, name: 'Lazy' }],
+      'Available'
     ),
   ];
 

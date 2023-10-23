@@ -1,11 +1,6 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  Input,
-  HostListener,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 import { PetModel } from '../shared/pet.model';
 import { PetService } from '../shared/pet.service';
 import { DataStorageService } from '../shared/dataStorage.service';
@@ -22,6 +17,9 @@ export class PetListComponent implements OnInit {
 
   petEdit: PetModel[];
 
+  // @Input()
+  // petIndex: number;
+
   constructor(
     private router: Router,
     private petService: PetService,
@@ -32,12 +30,35 @@ export class PetListComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.index = +params['id'];
+      this.pet = this.petService.gethardcodedPet(this.index);
     });
 
     this.hardcodePetArray = this.petService.gethardcodedPetArray();
+
+    // de verificat si de implementat Pet List-ul din server aici
+  }
+  displayedColumns: string[] = [
+    'id',
+    // 'category',
+    'name',
+    // 'photo',
+    // 'tags',
+    'status',
+    'actions',
+  ];
+
+  onEditPetClick(index: any) {
+    this.petService.startedEditing.next(index);
+    // this.router.navigate(['/list/{{pet.id +1/edit']);
   }
 
-  onEditPetClick(index: any) {}
+  OnDeletePet(index: any) {
+    this.dataStorageService.deletePets();
+  }
 
-  OnDeletePet(index: any) {}
+  // // ! TO IMPLEMENT - FILTER DATA ON TABLE
+  // applyFilter(filterValue: string) {
+  //   this.data.filter = filterValue.trim().toLowerCase();
+  // }
+  // // TO FILTER DATA IN TABLE - END
 }
