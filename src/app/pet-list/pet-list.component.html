@@ -26,17 +26,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let pet of hardcodePetArray; let i = index">
+        <tr *ngFor="let pet of apiPets; let i = index">
           <td>{{ i + 1 }}</td>
           <td>{{ pet.name }}</td>
           <td>
-            <!-- ! DE ADAUGAT ngCLass CORESPUNZATOR LA PET STATUS -->
-            <span class="status">{{ pet.status }}</span>
+            <span
+              class="status"
+              [ngClass]="{
+                available: pet.status === 'available',
+                pending: pet.status === 'pending',
+                sold: pet.status === 'sold'
+              }"
+              >{{ pet.status }}</span
+            >
           </td>
           <td class="btn-group">
             <!-- VIEW PET DETAILS -->
+            <!-- (click)="onView(i)" -->
             <span>
-              <a>
+              <a [routerLink]="['/list', pet.id]">
                 <img
                   src="../../../assets/eye.png"
                   style="cursor: pointer"

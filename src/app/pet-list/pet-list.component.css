@@ -1,11 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora&family=Roboto&family=Young+Serif&display=swap");
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: young serif;
 }
+
+/* ! NU MERGE! */
+/* body {
+  overflow-y: hidden;
+} */
+/* ! NU MERGE! ^^^^^^^*/
 
 /* Background IMG */
 span img {
@@ -45,18 +49,20 @@ td {
   border-collapse: collapse;
 }
 
-table th {
-  /* position: sticky; */
+/* table th {
+  position: sticky;
   background-color: #dcd3f1fe;
   opacity: 0.7;
-}
+} */
 
-/* thead th {
+thead th {
   position: sticky;
   top: 0;
   left: 0;
-  background-color: #d5d1defe;
-} */
+  background-color: #dcd3f1fe;
+  overflow: hidden;
+  z-index: 2;
+}
 
 tbody tr:nth-child(even) {
   background-color: #0000000b;
@@ -83,7 +89,6 @@ th:hover {
   border-radius: 0.8rem;
   margin: 250px auto 0;
   overflow: hidden;
-
   /* scrollbar-gutter: stable both-edges; */
 }
 
@@ -92,7 +97,6 @@ th:hover {
   height: 8%;
   background-color: #fff3;
   padding: 0.8rem 2.5rem;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -127,20 +131,20 @@ th:hover {
   display: inline-block;
   padding: 0.4rem 0;
   border-radius: 2rem;
-  margin: 0 50px;
+  margin: 0 45px;
   text-align: center;
 }
 
-.status.Available {
-  background-color: #86e49d;
+.status.available {
+  background-color: #86e49e70;
   color: #006b21;
 }
 
-.status.Pending {
-  background-color: #ebc474;
+.status.pending {
+  background-color: #ebc37472;
 }
 
-.status.Sold {
-  background-color: #d893a3;
+.status.sold {
+  background-color: #d893a372;
   color: #b30021;
 }

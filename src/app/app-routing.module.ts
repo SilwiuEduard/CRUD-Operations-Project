@@ -12,12 +12,12 @@ import { HomePageComponent } from './home-page/home-page.component';
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
+  { path: 'list', component: PetListComponent },
   {
     path: 'list/:id',
     component: PetDetailsComponent,
     // resolve: [PetsResolverService],
   },
-  { path: 'list', component: PetListComponent },
   {
     path: 'list/:id/edit',
     component: EditPetComponent,

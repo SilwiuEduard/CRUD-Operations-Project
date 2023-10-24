@@ -4,6 +4,16 @@ import { PetModel } from './pet.model';
 
 @Injectable({ providedIn: 'root' })
 export class PetService {
+  singlePetInfo: any[] = []; // this.PetServiceV2.singlePetInfo = [];: Aceasta golește un vector sau o listă numită singlePetInfo în serviciul PetServiceV2. Golirea acestei liste poate fi efectuată pentru a face loc pentru noile detalii ale elementului selectat.
+
+  addPetInfo(infos: any) {
+    this.singlePetInfo.push(infos);
+  } // Acest lucru adaugă datele rândului selectat (selectedRowData) în vectorul sau lista menționată mai devreme (singlePetInfo) folosind serviciul myService. Aceasta poate fi utilizată ulterior pentru a furniza date pentru afișare sau procesare în altă parte a aplicației.
+
+  // ! #############################
+
+  // puse "sa mearga" din ce scrisesem eu initial, // ! de sters
+
   startedEditing = new Subject<number>();
   petsChanged = new Subject<PetModel[]>();
 
@@ -52,77 +62,6 @@ export class PetService {
     ),
 
     // to delete
-
-    new PetModel(
-      4,
-      { id: 2, name: 'Cat' },
-      'Flix',
-      [
-        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
-      ],
-      [{ id: 3, name: 'Lazy' }],
-      'Available'
-    ),
-    new PetModel(
-      4,
-      { id: 2, name: 'Cat' },
-      'Flix',
-      [
-        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
-      ],
-      [{ id: 3, name: 'Lazy' }],
-      'Available'
-    ),
-    new PetModel(
-      4,
-      { id: 2, name: 'Cat' },
-      'Flix',
-      [
-        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
-      ],
-      [{ id: 3, name: 'Lazy' }],
-      'Available'
-    ),
-    new PetModel(
-      4,
-      { id: 2, name: 'Cat' },
-      'Flix',
-      [
-        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
-      ],
-      [{ id: 3, name: 'Lazy' }],
-      'Available'
-    ),
-    new PetModel(
-      4,
-      { id: 2, name: 'Cat' },
-      'Flix',
-      [
-        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
-      ],
-      [{ id: 3, name: 'Lazy' }],
-      'Available'
-    ),
-    new PetModel(
-      4,
-      { id: 2, name: 'Cat' },
-      'Flix',
-      [
-        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
-      ],
-      [{ id: 3, name: 'Lazy' }],
-      'Available'
-    ),
-    new PetModel(
-      4,
-      { id: 2, name: 'Cat' },
-      'Flix',
-      [
-        'https://t3.gstatic.com/licensed-image?q=tbn:ANd9GcRoT6NNDUONDQmlthWrqIi_frTjsjQT4UZtsJsuxqxLiaFGNl5s3_pBIVxS6-VsFUP_',
-      ],
-      [{ id: 3, name: 'Lazy' }],
-      'Available'
-    ),
   ];
 
   // * Loading a copy of hardcoded pet Array

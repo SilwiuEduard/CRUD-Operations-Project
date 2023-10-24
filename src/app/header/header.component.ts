@@ -9,7 +9,7 @@ import { DataStorageService } from '../shared/dataStorage.service';
 export class HeaderComponent {
   constructor(private dataStorageService: DataStorageService) {}
 
-  onFetchData() {
-    this.dataStorageService.fetchPets();
-  }
+  // onFetchData() {
+  //   this.dataStorageService.fetchPets();
+  // }
 }
