@@ -1,6 +1,6 @@
 <header class="main-header">
   <div>
-    <a routerLink="/" class="main-header__brand">
+    <a (click)="redirectTo()" class="main-header__brand">
       <img src="../assets/petstore_icon.png" alt="petstore_icon" />
     </a>
   </div>
@@ -16,6 +16,10 @@
 
       <li class="main-nav__item">
         <a routerLink="add" routerLinkActive="active">Add Pet</a>
+      </li>
+
+      <li class="main-nav__item">
+        <a routerLink="addR" routerLinkActive="active">Add Pet2</a>
       </li>
       <!-- <li class="main-nav__item">
         <a routerLink="edit" routerLinkActive="active">Edit Pet</a>

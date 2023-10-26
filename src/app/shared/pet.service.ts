@@ -17,7 +17,6 @@ export class PetService {
   startedEditing = new Subject<number>();
   petsChanged = new Subject<PetModel[]>();
 
-  private pets: PetModel[] = []; // for HttpRequests
   private hardcodePetArray: PetModel[] = [
     new PetModel(
       1,
@@ -64,10 +63,8 @@ export class PetService {
     // to delete
   ];
 
-  // * Loading a copy of hardcoded pet Array
-  gethardcodedPetArray() {
-    return this.hardcodePetArray.slice();
-  }
+  private pets: PetModel[] = []; // for HttpRequests
+
   getPetsArray() {
     return this.pets.slice();
   }
@@ -95,5 +92,10 @@ export class PetService {
   deletePet(index: number) {
     this.hardcodePetArray.splice(index, 1);
     this.petsChanged.next(this.hardcodePetArray.slice());
+  }
+
+  // * Loading a copy of hardcoded pet Array
+  gethardcodedPetArray() {
+    return this.hardcodePetArray.slice();
   }
 }

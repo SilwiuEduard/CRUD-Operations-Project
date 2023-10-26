@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { PetListComponent } from './pet-list/pet-list.component';
 import { PetDetailsComponent } from './pet-details/pet-details.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
+import { AddPetReactiveComponent } from './add-pet-reactive/add-pet-reactive/add-pet-reactive.component';
 import { EditPetComponent } from './edit-pet/edit-pet.component';
 
 @NgModule({
@@ -23,11 +24,13 @@ import { EditPetComponent } from './edit-pet/edit-pet.component';
     PetListComponent,
     PetDetailsComponent,
     AddPetComponent,
+    AddPetReactiveComponent,
     EditPetComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSelectModule,

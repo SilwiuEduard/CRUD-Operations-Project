@@ -84,9 +84,7 @@ export class EditPetComponent implements OnInit, OnDestroy {
     form.reset();
   }
 
-  OnEditData() {
-    this.dataStorageService.storePets();
-  }
+  OnEditData() {}
 
   OnCancel() {
     this.EditForm.reset();

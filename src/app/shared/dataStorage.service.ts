@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 
 import { PetService } from './pet.service';
 import { PetModel } from './pet.model';
+import { PetInterface } from '../shared/pet.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
+  pets: any[] = [];
+
   readonly apiHost = 'https://petstore.swagger.io';
   readonly apiVersion = 'v2';
 
@@ -17,7 +20,7 @@ export class DataStorageService {
   // <<    GET |  FIND PET BY ID >>  petstore.swagger.io/v2/pet/{petId}
   // << DELETE |   DELETES A PET >>  petstore.swagger.io/v2/pet/{petId}
 
-  pets: any[] = [];
+  // pets: PetInterface[] = [];
 
   constructor(private http: HttpClient, private petService: PetService) {}
 
@@ -76,16 +79,48 @@ export class DataStorageService {
   getPetById(petId: number) {
     let pet: any[] = [];
     this.http
-      .get<any>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
+      .get<any[]>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
       .pipe(catchError(this.handleError))
-      .subscribe((data: any[]) => {
-        pet.push(data);
+      .subscribe((petsInfos: any[]) => {
+        this.pets = petsInfos;
       });
     return pet;
   }
 
+  // ! CODUL INAINTE
+  // getPetById(petId: number) {
+  //   let pet: any[] = [];
+  //   this.http
+  //     .get<any>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
+  //     .pipe(catchError(this.handleError))
+  //     .subscribe((data: any[]) => {
+  //       pet.push(data);
+  //     });
+  //   return pet;
+  // }
+
+  addPet(petForm: any) {
+    this.pets = [];
+    this.http
+      .post<any>(`${this.apiHost}/${this.apiVersion}/pet`, petForm)
+      .pipe(catchError(this.handleError))
+      .subscribe((data) => {
+        this.pets = data;
+      });
+    return this.pets;
+  }
+
   // ! ##########
-  storePets() {}
+
+  deletePets(petId: number) {
+    this.pets = [];
+    this.http
+      .delete<any[]>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
+      .pipe(catchError(this.handleError))
+      .subscribe((data) => {
+        this.pets = data;
+      });
+  }
 
   private handleError(error: any) {
     console.error('server error:', error);

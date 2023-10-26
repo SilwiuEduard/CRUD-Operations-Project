@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataStorageService } from '../shared/dataStorage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,18 @@ import { DataStorageService } from '../shared/dataStorage.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  constructor(private dataStorageService: DataStorageService) {}
+  constructor(
+    private dataStorageService: DataStorageService,
+    private router: Router
+  ) {}
 
   // onFetchData() {
   //   this.dataStorageService.fetchPets();
   // }
+
+  redirectTo() {
+    this.router.navigate(['/']);
+    window.scrollTo(0, 0);
+    // routerLink = '/';
+  }
 }

@@ -7,6 +7,7 @@ import { PetDetailsComponent } from './pet-details/pet-details.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
 import { EditPetComponent } from './edit-pet/edit-pet.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { AddPetReactiveComponent } from './add-pet-reactive/add-pet-reactive/add-pet-reactive.component';
 // import { PetsResolverService } from './shared/pets-resolver.service';
 
 const appRoutes: Routes = [
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
     // resolve: [PetsResolverService],
   },
   { path: 'add', component: AddPetComponent },
+  { path: 'addR', component: AddPetReactiveComponent },
   { path: 'edit', component: EditPetComponent },
   { path: 'test', component: PetDetailsComponent },
   { path: '**', redirectTo: '/home' },
