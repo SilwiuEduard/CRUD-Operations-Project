@@ -8,7 +8,7 @@
       class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"
       style="margin-top: 20px"
     >
-      <h2>Add a new pet to the store</h2>
+      <h2>Add pet - Template-driven approach</h2>
       <form
         #formAddRef="ngForm"
         (ngSubmit)="onSubmit(formAddRef)"
@@ -22,7 +22,7 @@
             class="form-control"
             id="id"
             name="id"
-            type="text"
+            type="number"
             placeholder="Enter a valid id"
             required
             #idRef="ngModel"
@@ -55,9 +55,9 @@
             required
             #statusRef="ngModel"
           >
-            <option value="Available">Available</option>
-            <option value="Pending">Pending</option>
-            <option value="Sold">Sold</option>
+            <option value="available">Available</option>
+            <option value="pending">Pending</option>
+            <option value="sold">Sold</option>
           </select>
         </div>
 
@@ -84,7 +84,7 @@
             ngModel
             class="form-control"
             id="photo"
-            name="photoUrls"
+            name="photo"
             type="text"
             placeholder="Enter a photo url"
           />

@@ -11,7 +11,9 @@ import { DataStorageService } from '../shared/dataStorage.service';
   styleUrls: ['./pet-details.component.css'],
 })
 export class PetDetailsComponent implements OnInit {
-  petArray: any[] = [];
+  infoPet: any;
+
+  petId: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,11 +21,13 @@ export class PetDetailsComponent implements OnInit {
     private dataStorageService: DataStorageService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.petService.petId = Number(params['id']);
+      this.petId = Number(params['id']);
+      console.log(this.petId, 'petID');
+      //   this.petService.petId = Number(params['id']);
     });
-    this.petArray = this.dataStorageService.getPetById(this.petService.petId);
-    console.log(this.petArray);
+    this.infoPet = await this.dataStorageService.getPetById(this.petId);
+    console.log(this.infoPet, 'infoPetTEST');
   }
 }

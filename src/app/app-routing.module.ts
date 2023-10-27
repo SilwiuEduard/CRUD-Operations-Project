@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'list', component: PetListComponent },
   {
-    path: 'list/:id',
+    path: 'view/:id',
     component: PetDetailsComponent,
     // resolve: [PetsResolverService],
   },

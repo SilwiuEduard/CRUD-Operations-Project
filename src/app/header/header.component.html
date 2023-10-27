@@ -11,27 +11,33 @@
   <nav class="main-nav">
     <ul class="main-nav__items">
       <li class="main-nav__item">
-        <a routerLink="list" routerLinkActive="active">Pet List</a>
-      </li>
-
-      <!-- <li class="main-nav__item">
-        <a routerLink="list/:id" routerLinkActive="active">Pet Details</a>
-      </li> -->
-
-      <li class="main-nav__item">
-        <a routerLink="add" routerLinkActive="active">Add Pet</a>
+        <a routerLink="list" routerLinkActive="active">Pet List </a>
       </li>
 
       <li class="main-nav__item">
-        <a routerLink="addR" routerLinkActive="active">Add Pet2</a>
+        <a routerLink="add" routerLinkActive="active"
+          >Add Pet TD
+          <span>
+            <img
+              class="plus"
+              src="../../assets/add-new-pet_TD.png"
+              style="cursor: pointer"
+            />
+          </span>
+        </a>
       </li>
-      <!-- <li class="main-nav__item">
-        <a routerLink="edit" routerLinkActive="active">Edit Pet</a>
-      </li> -->
 
-      <!-- <li class="main-nav__item">
-        <a style="cursor: pointer" (click)="onFetchData()">//fetchdata</a>
-      </li> -->
+      <li class="main-nav__item">
+        <a routerLink="addR" routerLinkActive="active"
+          >Add Pet R
+          <span>
+            <img
+              class="plus"
+              src="../../assets/add-new-pet_R.png"
+              style="cursor: pointer"
+            /> </span
+        ></a>
+      </li>
     </ul>
   </nav>
 </header>

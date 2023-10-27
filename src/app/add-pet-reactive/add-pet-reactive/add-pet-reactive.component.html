@@ -8,7 +8,7 @@
       class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"
       style="margin-top: 20px"
     >
-      <h2>Add a new pet - Reactive way</h2>
+      <h2>Add a new pet to the store - Reactive approach</h2>
       <form
         [formGroup]="petForm"
         (ngSubmit)="submitForm(); petForm.reset()"
@@ -71,9 +71,9 @@
             formControlName="status"
             (input)="onInputChange()"
           >
-            <option value="Available">Available</option>
-            <option value="Pending">Pending</option>
-            <option value="Sold">Sold</option>
+            <option value="available">Available</option>
+            <option value="pending">Pending</option>
+            <option value="sold">Sold</option>
           </select>
         </div>
 

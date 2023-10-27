@@ -60,3 +60,12 @@ html {
 .active {
   border-bottom: 5px solid #e87725;
 }
+
+li.img {
+  height: 100%;
+  width: 100%;
+}
+
+.plus {
+  height: 20px;
+}

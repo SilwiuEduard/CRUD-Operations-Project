@@ -3,14 +3,7 @@
     <img src="../../assets/pets.png" class="pets-img" />
   </div> -->
 
-  <!-- <div class="container" style="margin-top: 130px">
-  <h2>Pet details</h2>
-  <div class="grid-container" style="margin-top: 20px">
-    * DE FACUT SI DE ADAUGAT TEMPLATE AICI
-  </div>
-</div> -->
-
-  <div class="a-box" *ngFor="let info of infoPet">
+  <div class="a-box">
     <div class="img-container">
       <div class="img-inner">
         <div class="inner-skew">
@@ -19,19 +12,26 @@
       </div>
     </div>
     <div class="text-container">
+      <button class="btn btn-primary" routerLink="/list">
+        Go back to the list
+      </button>
       <h3>Pet Details:</h3>
-      <div>This a demo experiment to skew image container. It looks good.</div>
+      <ul class="list-group" *ngFor="let info of petArray">
+        <li class="list-group-item"><b>Name: </b> {{ info.name }}</li>
+        <li class="list-group-item"><b>Id: </b> {{ info.id }}</li>
+        <li class="list-group-item"><b>Status: </b> {{ info.status }}</li>
+        <li class="list-group-item">
+          <b>Category: </b> {{ info.category.name }}
+        </li>
+        <li class="list-group-item">
+          <b>Category Id: </b> {{ info.category.id }}
+        </li>
+        <li class="list-group-item"><b>Tag: </b> {{ info.tags.name }}</li>
+        <li class="list-group-item"><b>Tag Id: </b> {{ info.tags.id }}</li>
+      </ul>
     </div>
 
-    <ul class="list-group">
-      <li class="list-group-item"><b>Name</b> {{ info.name }}</li>
-      <li class="list-group-item"><b>Category</b> {{ info.category.name }}</li>
-      <li class="list-group-item"><b>Status</b> {{ info.status }}</li>
-      <li class="list-group-item"><b>ID</b> {{ info.id }}</li>
-    </ul>
-
-    <button class="btn btn-primary" routerLink="/list">
-      Go back to the list
-    </button>
+    <br />
+    <br />
   </div>
 </div>

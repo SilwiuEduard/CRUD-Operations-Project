@@ -12,20 +12,17 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pet-list.component.css'],
 })
 export class PetListComponent implements OnInit {
-  @Input() pet: PetModel;
-  index: number;
-  hardcodePetArray: PetModel[];
+  apiPets: any[] = [];
+  // Multimea unde va fi stocata data de la API
+  // apiPets: PetInterface[] = [];
 
-  petEdit: PetModel[];
+  selectedPetIndex: number = -1;
+  // Index pet ajustat pentru ca in tabel incepe de la 1, nu de la 0 ca multimile // * <td>{{ i + 1 }}</td>
 
-  // #####
+  filteredPets: any[] = [];
+  //  Aici se obțin datele corespunzătoare randului selectat din lista numita filteredPets.
 
-  // apiPets: any[] = []; // Multimea unde va fi stocata data de la API
-  apiPets: PetInterface[] = [];
-
-  selectedPetIndex: number = -1; // Index pet ajustat pentru ca in tabel incepe de la 1, nu de la 0 ca multimile // * <td>{{ i + 1 }}</td>
-
-  filteredPets: PetInterface[] = []; //  Aici se obțin datele corespunzătoare randului selectat din lista numita filteredPets.
+  // filteredPets: PetInterface[] = []; //  Aici se obțin datele corespunzătoare randului selectat din lista numita filteredPets.
 
   selectedPetData: any = null;
 
@@ -54,14 +51,6 @@ export class PetListComponent implements OnInit {
     // this.fetchPetsLoading = false;
   }
 
-  onSelectStatus() {
-    const selectElement = document.getElementById(
-      'statusSelect'
-    ) as HTMLSelectElement;
-    const selectedValue = selectElement.value;
-    this.apiPets = this.dataStorageService.fetchPets(selectedValue);
-  }
-
   ngAfterViewInit() {
     const selectElement = document.getElementById(
       'statusSelect'
@@ -69,6 +58,14 @@ export class PetListComponent implements OnInit {
     selectElement.addEventListener('change', () => {
       this.onSelectStatus();
     });
+  }
+
+  onSelectStatus() {
+    const selectElement = document.getElementById(
+      'statusSelect'
+    ) as HTMLSelectElement;
+    const selectedValue = selectElement.value;
+    this.apiPets = this.dataStorageService.fetchPets(selectedValue);
   }
 
   // petClasses() {
@@ -84,13 +81,22 @@ export class PetListComponent implements OnInit {
   // }
 
   onView(petIndex: number) {
+    // debugger;
     this.selectedPetIndex = petIndex;
-    this.selectedPetData = this.filteredPets[petIndex]; // Aici, se obțin datele corespunzătoare rândului selectat dintr-o listă numită filteredPets.
-    if (this.selectedPetData && this.selectedPetIndex > -1) {
-      this.petService.singlePetInfo = []; // Aceasta golește un vector sau o listă numită singlePetInfo în serviciul PetServiceV2. Golirea acestei liste poate fi efectuată pentru a face loc pentru noile detalii ale elementului selectat.
-      this.petService.addPetInfo(this.selectedPetData); // Acest lucru adaugă datele rândului selectat (selectedRowData) în vectorul sau lista menționată mai devreme (singlePetInfo) folosind serviciul myService. Aceasta poate fi utilizată ulterior pentru a furniza date pentru afișare sau procesare în altă parte a aplicației.
+    this.selectedPetData = this.apiPets[petIndex];
+
+    // Aici, se obțin datele corespunzătoare rândului selectat dintr-o listă numită filteredPets.
+    if (this.selectedPetIndex > -1) {
+      this.petService.singlePetInfo = [];
+
+      // Aceasta golește un vector sau o listă numită singlePetInfo în serviciul PetServiceV2. Golirea acestei liste poate fi efectuată pentru a face loc pentru noile detalii ale elementului selectat.
+      this.petService.addPetInfo(this.selectedPetData);
+
+      // Acest lucru adaugă datele rândului selectat (selectedRowData) în vectorul sau lista menționată mai devreme (singlePetInfo) folosind serviciul myService. Aceasta poate fi utilizată ulterior pentru a furniza date pentru afișare sau procesare în altă parte a aplicației.
+      console.log();
       this.id = this.selectedPetData.id;
-      this.router.navigate(['/list', this.id]);
+
+      this.router.navigate(['/view', this.id]);
     }
   }
 

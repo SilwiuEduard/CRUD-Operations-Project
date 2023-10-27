@@ -14,7 +14,7 @@ import { DataStorageService } from '../shared/dataStorage.service';
 })
 export class AddPetComponent {
   @ViewChild('formAddRef') submitForm: NgForm;
-  defaultStatus = 'Available';
+  defaultStatus = 'available';
 
   isSubmitted: boolean = false; // pentru fereastra confirmare/eroare dupa submit
 
@@ -26,12 +26,11 @@ export class AddPetComponent {
   ) {}
 
   onSubmit(form: NgForm) {
-    console.log(form);
     this.isSubmitted = true;
 
     const value = form.value;
     const newPet = new PetModel(
-      value.index,
+      value.id,
       {
         id: value.categoryI,
         name: value.categoryN,
@@ -41,11 +40,14 @@ export class AddPetComponent {
       [{ id: value.tagI, name: value.tagN }],
       value.status
     );
+    this.dataStorageService.addPet(newPet);
+
+    console.log(form);
 
     setTimeout(() => {
       this.isSubmitted = false;
-      window.scrollTo(0, 0);
       this.router.navigate(['/list']);
+      window.scrollTo(0, 0);
     }, 1500);
   }
 

@@ -9,10 +9,12 @@ import { PetInterface } from '../shared/pet.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
+  pets: any[] = [];
+
+  petTest: any[];
+
   readonly apiHost = 'https://petstore.swagger.io';
   readonly apiVersion = 'v2';
-
-  pets: any[] = [];
 
   // ### METHODS ###
   // <<   POST |   ADD A NEW PET >>  petstore.swagger.io/v2/pet
@@ -29,7 +31,7 @@ export class DataStorageService {
 
     if (status === 'all') {
       this.http
-        .get<PetInterface[]>(
+        .get<any[]>(
           `${this.apiHost}/${this.apiVersion}/pet/findByStatus?status=available`
         )
         // .pipe(catchError(this.handleError))
@@ -77,15 +79,28 @@ export class DataStorageService {
   }
 
   getPetById(petId: number) {
-    let pet: any[] = [];
+    // let pet: any[] = [];
     this.http
       .get<any>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
-      .pipe(catchError(this.handleError))
-      .subscribe((data: any[]) => {
-        pet.push(data);
+      // .pipe(catchError(this.handleError))
+      .subscribe((petsInfos: any[]) => {
+        console.log(petsInfos, 'petsInfos');
+        this.petTest = petsInfos;
       });
-    return pet;
+    return this.petTest;
   }
+
+  // ! CODUL INAINTE
+  // getPetById(petId: number) {
+  //   let pet: any[] = [];
+  //   this.http
+  //     .get<any>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
+  //     .pipe(catchError(this.handleError))
+  //     .subscribe((data: any[]) => {
+  //       pet.push(data);
+  //     });
+  //   return pet;
+  // }
 
   addPet(petForm: any) {
     this.pets = [];
