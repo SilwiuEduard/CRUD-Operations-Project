@@ -20,7 +20,7 @@ const appRoutes: Routes = [
     // resolve: [PetsResolverService],
   },
   {
-    path: 'list/:id/edit',
+    path: 'edit/:id',
     component: EditPetComponent,
     // resolve: [PetsResolverService],
   },

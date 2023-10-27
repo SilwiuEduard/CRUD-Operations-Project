@@ -9,12 +9,7 @@
       style="margin-top: 20px"
     >
       <h2>Edit pet section</h2>
-      <form
-        style="margin-top: 50px"
-        (ngSubmit)="onEditPet(formEditRef)"
-        #formEditRef="ngForm"
-        autocomplete="off"
-      >
+      <form style="margin-top: 50px" autocomplete="off">
         <div class="form-group">
           <label for="index">Pet Index*</label>
           <input
@@ -113,7 +108,6 @@
             class="form-control"
             ngModel
             name="status"
-            [ngModel]="defaultStatus"
             required
             #statusRef="ngModel"
           >
@@ -127,16 +121,12 @@
           >Please choose a status.
         </span>
 
-        <p class="help-block" *ngIf="!formEditRef.valid && formEditRef.touched">
+        <p class="help-block" *ngIf="">
           Please fill all the mandatory(*) inputs before beeing able to submit
           the editted form.
         </p>
 
-        <button
-          [disabled]="!formEditRef.valid"
-          class="btn btn-warning"
-          type="submit"
-        >
+        <button [disabled]="" class="btn btn-warning" type="submit">
           Edit
         </button>
         |

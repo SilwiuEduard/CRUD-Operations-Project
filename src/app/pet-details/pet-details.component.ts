@@ -11,42 +11,19 @@ import { DataStorageService } from '../shared/dataStorage.service';
   styleUrls: ['./pet-details.component.css'],
 })
 export class PetDetailsComponent implements OnInit {
-  pet: any;
-  id: number;
+  infoPet: any[] = [];
 
   constructor(
-    private petService: PetService,
     private route: ActivatedRoute,
-    private router: Router,
+    private petService: PetService,
     private dataStorageService: DataStorageService
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-      this.pet = this.dataStorageService.getPetById(this.id);
+    this.route.params.subscribe((params) => {
+      this.petService.petId = Number(params['id']);
     });
-    // const id = this.route.snapshot.params['id']; //varianta 1
-    // // this.data = this.petService.getGeneralData();
+    this.infoPet = this.dataStorageService.getPetById(this.petService.petId);
+    console.log(this.infoPet);
   }
 }
-
-// export class PetDetailsComponentOriginal implements OnInit {
-//   pet: PetModel;
-//   id: number;
-
-//   constructor(
-//     private petService: PetService,
-//     private route: ActivatedRoute,
-//     private router: Router
-//   ) {}
-
-//   ngOnInit() {
-//     this.route.params.subscribe((params: Params) => {
-//       this.id = +params['id'];
-//       this.pet = this.petService.gethardcodedPet(this.id);
-//     });
-//     // const id = this.route.snapshot.params['id']; //varianta 1
-//     // // this.data = this.petService.getGeneralData();
-//   }
-// }

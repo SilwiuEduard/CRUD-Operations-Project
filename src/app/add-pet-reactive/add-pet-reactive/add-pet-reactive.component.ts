@@ -5,8 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { DataStorageService } from 'src/app/shared/dataStorage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-pet-reactive',
@@ -54,13 +54,14 @@ export class AddPetReactiveComponent {
     private router: Router,
     private dataStorageService: DataStorageService
   ) {}
+
   ngOnInit() {
     this.petForm = this.formBuilder.group({
-      id: '',
       name: '',
-      status: 'Available',
-      // photoUrls: '',
       category: 'Not selected',
+      status: 'Available',
+      id: '',
+      // photoUrls: '',
     });
   }
 

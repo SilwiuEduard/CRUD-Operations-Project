@@ -41,7 +41,6 @@ export class AddPetComponent {
       [{ id: value.tagI, name: value.tagN }],
       value.status
     );
-    this.petService.addPet(newPet);
 
     setTimeout(() => {
       this.isSubmitted = false;

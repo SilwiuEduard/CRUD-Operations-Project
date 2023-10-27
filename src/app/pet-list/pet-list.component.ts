@@ -29,6 +29,8 @@ export class PetListComponent implements OnInit {
 
   selectedPetData: any = null;
 
+  messageRemove = false;
+
   id: number; // Proprietate pentru stocare index obiecte
 
   // fetchPetsLoading = false; //loading animation
@@ -92,8 +94,16 @@ export class PetListComponent implements OnInit {
     }
   }
 
-  onEditPetClick(index: any) {
-    // ! de implementat
+  onEditPetClick(petIndex: number) {
+    this.selectedPetIndex = petIndex;
+    this.petService.selectedPetIndex = petIndex;
+    this.selectedPetData = this.filteredPets[petIndex];
+    if (this.selectedPetIndex > -1) {
+      this.petService.singlePetInfo = [];
+      this.petService.addPetInfo(this.selectedPetData);
+      this.id = this.selectedPetData.id;
+      this.router.navigate(['/edit', this.id]);
+    }
   }
 
   onDelete(rowIndex: number) {
@@ -105,5 +115,27 @@ export class PetListComponent implements OnInit {
 
   // onHandleError() {
   //   this.error = null;
+  // }
+
+  // ! De IMPLEMENTAT
+  // confirmDelete() {
+  //   const modal = document.getElementById('deleteModal') as HTMLElement;
+  //   modal.style.display = 'none';
+  //   if (this.selectedPetIndex > -1) {
+  //     this.dataStorageService.deletePets(this.selectedPetData.id);
+  //     this.filteredPets.splice(this.selectedPetIndex, 1);
+  //     this.selectedPetIndex = -1;
+  //     this.selectedPetData = null;
+  //     this.messageRemove = true;
+  //     setTimeout(() => {
+  //       this.messageRemove = false;
+  //     }, 1000);
+  //   }
+  // }
+
+  // ! De IMPLEMENTAT
+  // cancelDelete() {
+  //   const modal = document.getElementById('deleteModal') as HTMLElement;
+  //   modal.style.display = 'none';
   // }
 }

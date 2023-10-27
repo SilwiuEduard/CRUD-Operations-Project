@@ -32,7 +32,7 @@ export class DataStorageService {
         .get<any[]>(
           `${this.apiHost}/${this.apiVersion}/pet/findByStatus?status=available`
         )
-        .pipe(catchError(this.handleError))
+        // .pipe(catchError(this.handleError))
         .subscribe((data: any[]) => {
           console.log('pets on available list : ', data.length);
           for (let i = 0; i < data.length; i++) {
@@ -43,7 +43,7 @@ export class DataStorageService {
         .get<any[]>(
           `${this.apiHost}/${this.apiVersion}/pet/findByStatus?status=pending`
         )
-        .pipe(catchError(this.handleError))
+        // .pipe(catchError(this.handleError))
         .subscribe((data: any[]) => {
           console.log('pets on pending list : ', data.length);
           for (let i = 0; i < data.length; i++) {
@@ -54,7 +54,7 @@ export class DataStorageService {
         .get<any[]>(
           `${this.apiHost}/${this.apiVersion}/pet/findByStatus?status=sold`
         )
-        .pipe(catchError(this.handleError))
+        // .pipe(catchError(this.handleError))
         .subscribe((data: any[]) => {
           console.log('pets on sold list : ', data.length, data);
           for (let i = 0; i < data.length; i++) {
@@ -66,7 +66,7 @@ export class DataStorageService {
         .get<any[]>(
           `${this.apiHost}/${this.apiVersion}/pet/findByStatus?status=${status}`
         )
-        .pipe(catchError(this.handleError))
+        // .pipe(catchError(this.handleError))
         .subscribe((data: any[]) => {
           for (let i = 0; i < data.length; i++) {
             this.pets.push(data[i]);
@@ -79,8 +79,8 @@ export class DataStorageService {
   getPetById(petId: number) {
     let pet: any[] = [];
     this.http
-      .get<any[]>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
-      .pipe(catchError(this.handleError))
+      .get<any>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
+      // .pipe(catchError(this.handleError))
       .subscribe((petsInfos: any[]) => {
         this.pets = petsInfos;
       });
@@ -103,20 +103,28 @@ export class DataStorageService {
     this.pets = [];
     this.http
       .post<any>(`${this.apiHost}/${this.apiVersion}/pet`, petForm)
-      .pipe(catchError(this.handleError))
+      // .pipe(catchError(this.handleError))
       .subscribe((data) => {
         this.pets = data;
       });
     return this.pets;
   }
 
-  // ! ##########
+  editPet(editedPetForm: any) {
+    this.pets = [];
+    this.http
+      .put<any>(`${this.apiHost}/${this.apiVersion}/pet`, editedPetForm)
+      .subscribe((data) => {
+        this.pets = data;
+      });
+    return this.pets;
+  }
 
   deletePets(petId: number) {
     this.pets = [];
     this.http
-      .delete<any[]>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
-      .pipe(catchError(this.handleError))
+      .delete<any>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
+      // .pipe(catchError(this.handleError))
       .subscribe((data) => {
         this.pets = data;
       });
@@ -130,60 +138,4 @@ export class DataStorageService {
     }
     return throwError(error || 'Server error');
   }
-
-  // storePets() {
-  //   const pets = this.petService.getPetsArray();
-  //   this.http
-  //     .post(`${this.apiHost}/${this.apiVersion}/pet`, pets)
-  //     .subscribe((response) => {
-  //       console.log(response);
-  //     });
-  // }
-
-  // editPets() {
-  //   const pets = this.petService.getPetsArray();
-  //   this.http
-  //     .put(`${this.apiHost}/${this.apiVersion}/pet`, pets)
-  //     .subscribe((response) => {
-  //       console.log(response);
-  //     });
-  // }
-
-  // }
-  // deletePets() {
-  //   const pets = this.petService.getPetsArray();
-  //   this.http
-  //     .delete<PetModel[]>(`${this.apiHost}/${this.apiVersion}/pet/{pet.id}`)
-  //     .subscribe((petsResponse) => {
-  //       console.log(petsResponse);
-  //       this.petService.setPets(petsResponse);
-  //     });
-  // }
-
-  //   // <<   POST |   ADD A NEW PET >>  petstore.swagger.io/v2/pet
-  //     storePet(): Observable<any> {
-  //       return this.http
-  //         .post(`${this.apiHost}/${this.apiVersion}/pet`)
-  //         .pipe(catchError(this.handleError));
-  //     }
-
-  // //<<    PUT |        EDIT PET >>  petstore.swagger.io/v2/pet
-  //   editPet(): Observable<any> {
-  //     return this.http
-  //       .put(`${this.apiHost}/${this.apiVersion}/pet`)
-  //       .pipe(catchError(this.handleError));
-  //   }
-
-  // //<<    GET |  FIND PET BY ID >>  petstore.swagger.io/v2/pet/{petId}
-  //   getPet(): Observable<any> {
-  //     return this.http
-  //       .get(`${this.apiHost}/${this.apiVersion}/pet/{petId}`)
-  //       .pipe(catchError(this.handleError));
-  //   }
-  // // << DELETE |   DELETES A PET >>  petstore.swagger.io/v2/pet/{petId}
-  //   deletePet(): Observable<any> {
-  //     return this.http
-  //       .delete(`${this.apiHost}/${this.apiVersion}/pet/{petId}`)
-  //       .pipe(catchError(this.handleError));
-  //   }
 }
