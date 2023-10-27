@@ -6,22 +6,44 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Project Infos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Listare animale (pagină individuală)
 
-## Build
+Filtru pentru status (available, pending, sold);
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Capul de tabel să fie format din: Index (începe de la 1), Nume, Status, Acțiuni;
 
-## Running unit tests
+În coloana “Acțiuni” să existe butoane pentru vizualizare, editare, ștergere element;
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Adăugare (pagină individuală)
 
-## Running end-to-end tests
+Să existe validare pentru câmpurile obligatorii (nume, status și id de tip number);
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Opțiunile dropdown-ului pentru status sunt: available, pending, sold. Statusul prestabilit sa fie “available”;
 
-## Further help
+După trimiterea formularului, să afișezi notificare de succes și eroare;
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+În caz de succes, după adăugare să se facă redirect spre lista de animale;
+
+Editare (pagină individuală)
+
+Să existe validare pentru câmpurile obligatorii;
+
+După trimiterea formularului, să afișezi notificare de succes și eroare;
+
+În caz de succes, după editare să se facă redirect spre lista de animale.
+
+Vizualizare (pagină individuală)
+
+Afișăm informațiile disponibile, chiar dacă sunt minimale.
+
+În caz că nu există anumite informații să afisam un placeholder sau un mesaj de tipul “Acest element nu are categorii, tag-uri, imagini etc.”;
+
+Ștergere
+
+Să existe un modal/pop-up pentru confirmarea ștergerii;
+
+Să existe notificare de succes și eroare;
+
+Să se actualizeze lista automat după ștergerea unui element;
