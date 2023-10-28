@@ -28,7 +28,7 @@
           />
         </div>
 
-        <span class="help-block" *ngIf="id?.invalid && id?.touched"
+        <span class="help-block" *ngIf="!id.valid && id.touched"
           >This field is mandatory, please fill a valid id.</span
         >
         <div class="form-group">

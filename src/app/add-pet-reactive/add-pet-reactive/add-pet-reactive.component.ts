@@ -15,17 +15,17 @@ import { Router } from '@angular/router';
 })
 export class AddPetReactiveComponent {
   petForm: FormGroup = new FormGroup({
-    id: new FormControl('', [
+    id: new FormControl(null, [
       Validators.required,
       Validators.pattern('^[1-9]d*$'),
     ]),
-    category: new FormControl(''),
-    name: new FormControl('', [
+    category: new FormControl(null),
+    name: new FormControl(null, [
       Validators.required,
       Validators.pattern('[a-zA-Z].*'),
     ]),
-    photoUrls: new FormControl(''),
-    tags: new FormControl(''),
+    photoUrls: new FormControl(null),
+    tags: new FormControl(null),
     status: new FormControl('available', Validators.required),
   });
 
