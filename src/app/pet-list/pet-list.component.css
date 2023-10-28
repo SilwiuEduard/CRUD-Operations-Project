@@ -82,6 +82,7 @@ th:hover {
 
 .table__wrapper {
   width: 72%;
+  min-width: 500px;
   height: 60vh;
   background-color: #fff5;
   backdrop-filter: blur(2px);

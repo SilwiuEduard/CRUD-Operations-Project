@@ -28,17 +28,17 @@ export class AddPetComponent {
   onSubmit(form: NgForm) {
     this.isSubmitted = true;
 
-    const value = form.value;
+    const petProps = form.value;
     const newPet = new PetModel(
-      value.id,
+      petProps.id,
       {
-        id: value.categoryI,
-        name: value.categoryN,
+        id: petProps.categoryI,
+        name: petProps.categoryN,
       },
-      value.name,
-      [value.photo],
-      [{ id: value.tagI, name: value.tagN }],
-      value.status
+      petProps.name,
+      [petProps.photo],
+      [{ id: petProps.tagI, name: petProps.tagN }],
+      petProps.status
     );
     this.dataStorageService.addPet(newPet);
 

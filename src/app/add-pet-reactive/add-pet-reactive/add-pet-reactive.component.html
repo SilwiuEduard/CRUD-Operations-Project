@@ -52,7 +52,7 @@
         <span
           class="form-text text-danger"
           *ngIf="name.errors?.['minlength'] && (name.touched || name.dirty)"
-          >name is too short. at least 2 caracters</span
+          >Name is too short. at least 2 characters</span
         >
         <span
           class="form-text text-danger"
@@ -85,29 +85,31 @@
 
         <hr />
 
-        <!-- <div class="form-group">
-          <label for="photo">Pet Photo</label>
+        <div class="form-group">
+          <label for="photoUrls">Pet Photo</label>
           <input
             class="form-control"
-            id="photo"
+            id="photoUrls"
             name="photoUrls"
             type="text"
             placeholder="Enter a photo url"
             formControlName="photoUrls"
           />
         </div>
-        <hr /> -->
+        <hr />
 
         <div class="form-group">
           <label class="form-label">Category</label>
-          <select class="form-control input-sm" formControlName="category">
-            <option value="Not selected">Not selected</option>
+          <select
+            placeholder="Select a category"
+            class="form-control input-sm"
+            formControlName="category"
+          >
+            <!-- <option value="not selected">Not selected</option> -->
             <option value="Dog">Dog</option>
             <option value="Cat">Cat</option>
+            <option value="Bird">Bird</option>
             <option value="Fish">Fish</option>
-            <option value="Reptiles">Reptiles</option>
-            <option value="Amphibians">Amphibians</option>
-            <option value="Birds">Birds</option>
           </select>
         </div>
         <hr />

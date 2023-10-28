@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {
+  FormGroup,
   FormBuilder,
   FormControl,
-  FormGroup,
   Validators,
 } from '@angular/forms';
 import { DataStorageService } from 'src/app/shared/dataStorage.service';
@@ -19,29 +19,33 @@ export class AddPetReactiveComponent {
       Validators.required,
       Validators.pattern('^[1-9]d*$'),
     ]),
+    category: new FormControl(''),
     name: new FormControl('', [
       Validators.required,
       Validators.pattern('[a-zA-Z].*'),
     ]),
+    photoUrls: new FormControl(''),
+    tags: new FormControl(''),
     status: new FormControl('available', Validators.required),
-    // photoUrls: new FormControl(''),
-    category: new FormControl('not selected'),
   });
 
   get id() {
     return this.petForm.get('id');
   }
+  get category() {
+    return this.petForm.get('category');
+  }
   get name() {
     return this.petForm.get('name');
   }
+  get photoUrls() {
+    return this.petForm.get('photoUrls');
+  }
+  get tags() {
+    return this.petForm.get('tags');
+  }
   get status() {
     return this.petForm.get('status');
-  }
-  // get photoUrls() {
-  //   return this.petForm.get('photoUrls');
-  // }
-  get category() {
-    return this.petForm.get('category');
   }
 
   addPetValues: any = {};
@@ -57,11 +61,13 @@ export class AddPetReactiveComponent {
 
   ngOnInit() {
     this.petForm = this.formBuilder.group({
-      name: '',
-      category: 'Not selected',
-      status: 'Available',
+      // Starting Values
       id: '',
-      // photoUrls: '',
+      category: '',
+      name: '',
+      photoUrls: '',
+      tags: '',
+      status: 'available',
     });
   }
 
@@ -91,18 +97,19 @@ export class AddPetReactiveComponent {
 
     this.addPetValues.id = this.petForm.get('id').value;
     this.addPetValues.category = {
-      id: 0,
+      id: 0, // de implementat corect Categorie - Id
       name: this.petForm.get('category').value,
     };
     this.addPetValues.name = this.petForm.get('name').value;
-    this.addPetValues.photoUrls = ['string'];
+    this.addPetValues.photoUrls = [this.petForm.get('photoUrls').value];
     this.addPetValues.tags = [
       {
-        id: 0,
-        name: 'string',
+        id: 0, // de implementat corect Tags[] - Id
+        name: 'tag',
       },
     ];
     this.addPetValues.status = this.petForm.get('status').value;
+
     if (this.addPetValues.name !== '' && this.addPetValues.status !== '') {
       this.dataStorageService.addPet(this.addPetValues);
       this.addPetValues = {};

@@ -12,22 +12,70 @@
       </div>
     </div>
     <div class="text-container">
-      <button class="btn btn-primary" routerLink="/list">
+      <button class="btn btn-primary" (click)="backToList()">
         Go back to the list
       </button>
       <h3>Pet Details:</h3>
-      <ul class="list-group" *ngFor="let info of petArray">
-        <li class="list-group-item"><b>Name: </b> {{ info.name }}</li>
-        <li class="list-group-item"><b>Id: </b> {{ info.id }}</li>
-        <li class="list-group-item"><b>Status: </b> {{ info.status }}</li>
+      <ul class="list-group" *ngFor="let petProps of petArray">
+        <li class="list-group-item"><b>Name: </b> {{ petProps.name }}</li>
+        <li class="list-group-item"><b>Id: </b> {{ petProps.id }}</li>
+        <li class="list-group-item"><b>Status: </b> {{ petProps.status }}</li>
+
         <li class="list-group-item">
-          <b>Category: </b> {{ info.category.name }}
+          <b>Category: </b>
+          <span
+            style="background-color: rgb(194, 152, 152)"
+            *ngIf="!petProps.category.name"
+            >not available</span
+          >{{ petProps.category.name }}
         </li>
         <li class="list-group-item">
-          <b>Category Id: </b> {{ info.category.id }}
+          <b>Category Id: </b>
+          <!-- *ngIf="
+              petProps.category.id === null ||
+              petProps.category.id === undefined
+            " -->
+          <span
+            style="background-color: rgb(194, 152, 152)"
+            *ngIf="petProps.category.id === 0"
+            >not available</span
+          >
+
+          {{ petProps.category.id !== 0 ? petProps.category.id : "" }}
         </li>
-        <li class="list-group-item"><b>Tag: </b> {{ info.tags.name }}</li>
-        <li class="list-group-item"><b>Tag Id: </b> {{ info.tags.id }}</li>
+        <li class="list-group-item" *ngFor="let tag of petProps.tags">
+          <b>Tag: </b>
+          <span style="background-color: rgb(194, 152, 152)" *ngIf="!tag.name"
+            >not available</span
+          >
+          {{ tag.name }}
+        </li>
+        <li class="list-group-item" *ngFor="let tag of petProps.tags">
+          <b>Tag Id: </b>
+          <span
+            style="background-color: rgb(194, 152, 152)"
+            *ngIf="tag.id === 0"
+            >not available</span
+          >
+          {{ tag.id !== 0 ? tag.id : "" }}
+        </li>
+        <li class="list-group-item">
+          <b>Photos: </b> <br />
+
+          <span
+            *ngIf="isEmptyPhotoUrls(petProps.photoUrls)"
+            style="background-color: rgb(194, 152, 152)"
+            >not available</span
+          >
+          <!-- ! Problema - Daca este un url "stricat" va afisa alt-ul img-ului si
+          not available -->
+          <img
+            *ngFor="let photoUrl of petProps.photoUrls"
+            [src]="photoUrl"
+            style="max-width: 120px; max-height: 100px"
+            alt=" not available"
+          />
+        </li>
       </ul>
     </div>
 
