@@ -47,6 +47,14 @@ export class PetDetailsComponent implements OnInit {
     return !photoUrls.some((url) => url.trim() !== '');
   }
 
+  isEmptyTagsArray(tags: { id: number; name: string }[]): boolean {
+    if (!tags || tags.length === 0) {
+      return true; // Array is empty
+    }
+    // Check if there are any non-empty URLs in the array
+    return !tags.some((tag) => tag.name && tag.name.trim() !== '');
+  }
+
   backToList() {
     this.router.navigate(['/list']);
     window.scrollTo(0, 0);

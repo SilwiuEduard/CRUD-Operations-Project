@@ -43,7 +43,29 @@
 
           {{ petProps.category.id !== 0 ? petProps.category.id : "" }}
         </li>
+
         <li class="list-group-item">
+          <b>Tags: </b>
+
+          <ng-container *ngIf="isEmptyTagsArray(petProps.tags)">
+            <span style="background-color: rgb(194, 152, 152)"
+              >not available</span
+            >
+          </ng-container>
+          <div *ngFor="let tag of petProps.tags; let i = index">
+            <label for="tag-{{ i + 1 }}">Tag - {{ i + 1 }} / </label>
+
+            name: {{ tag.name }}
+            <span
+              style="background-color: rgb(194, 152, 152)"
+              *ngIf="!tag.name || isEmptyTagsArray(petProps.tags)"
+              >not available</span
+            >
+            | id: {{ tag.id }}
+          </div>
+        </li>
+
+        <!-- <li class="list-group-item">
           <b>Tags: </b>
           <div *ngFor="let tag of petProps.tags">
             <span style="background-color: rgb(194, 152, 152)" *ngIf="!tag.name"
@@ -51,8 +73,9 @@
             >
             {{ tag.name }}
           </div>
-        </li>
-        <li class="list-group-item" *ngFor="let tag of petProps.tags">
+        </li> -->
+
+        <!-- <li class="list-group-item" *ngFor="let tag of petProps.tags">
           <b>Tag Id: </b>
           <span
             style="background-color: rgb(194, 152, 152)"
@@ -60,7 +83,8 @@
             >not available</span
           >
           {{ tag.id !== 0 ? tag.id : "" }}
-        </li>
+        </li> -->
+
         <li class="list-group-item">
           <b>Photos: </b> <br />
 

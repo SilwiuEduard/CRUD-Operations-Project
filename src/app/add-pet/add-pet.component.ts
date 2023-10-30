@@ -48,7 +48,7 @@ export class AddPetComponent {
       this.isSubmitted = false;
       this.router.navigate(['/list']);
       window.scrollTo(0, 0);
-    }, 1500);
+    }, 1000);
   }
 
   onCancel() {

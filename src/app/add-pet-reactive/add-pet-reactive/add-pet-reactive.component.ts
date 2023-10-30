@@ -16,15 +16,15 @@ import { Router } from '@angular/router';
 })
 export class AddPetReactiveComponent {
   petForm = this.fb.group({
-    id: [''], //  new FormControl('');
+    id: [''],
     category: this.fb.group({
       id: [''],
       name: [''],
-    }), //new FormGroup({})
-    name: [''], //  new FormControl('');
-    photoUrls: this.fb.array([]), //new FormArray([]); //   this.fb.control('')
-    tags: this.fb.array([]), //new FormArray([new FormGroup({})]); //  this.fb.group({id: this.fb.control(''), name: this.fb.control('')}),
-    status: ['available'], //  new FormControl('');
+    }),
+    name: [''],
+    photoUrls: this.fb.array([]),
+    tags: this.fb.array([]),
+    status: ['available'],
   });
 
   get id() {
@@ -39,16 +39,12 @@ export class AddPetReactiveComponent {
   get name() {
     return this.petForm.get('name');
   }
-
-  // get photoUrls() {
-  //   return this.petForm.get('photoUrls');
-  // }
-  // get tagsId() {
-  //   return this.petForm.get('tags.id');
-  // }
-  // get tagsName() {
-  //   return this.petForm.get('tags.name');
-  // }
+  get photoUrls() {
+    return (this.petForm.get('photoUrls') as FormArray).controls;
+  }
+  get tags() {
+    return (this.petForm.get('tags') as FormArray).controls;
+  }
   get status() {
     return this.petForm.get('status');
   }
@@ -66,7 +62,7 @@ export class AddPetReactiveComponent {
 
   ngOnInit() {
     this.fb.group({
-      id: ['', Validators.required, Validators.pattern('^[1-9]d*$')],
+      id: ['', [Validators.required, Validators.pattern('^[1-9][0-9]*$')]],
       category: this.fb.group({
         id: '',
         name: 'not selected',
@@ -86,7 +82,7 @@ export class AddPetReactiveComponent {
   }
 
   getValues() {
-    console.log(this.petForm.value);
+    console.log(this.petForm, this.petForm.value);
   }
   onInputChange() {
     if (this.petForm.valid) {
@@ -109,6 +105,7 @@ export class AddPetReactiveComponent {
     if (this.msgSuccess === true) {
       setTimeout(() => {
         this.router.navigate(['/list']);
+        window.scrollTo(0, 0);
       }, 1000);
     }
     // debugger;
@@ -119,62 +116,41 @@ export class AddPetReactiveComponent {
     };
     this.addPetValues.name = this.petForm.get('name').value;
     this.addPetValues.photoUrls = this.petForm.get('photoUrls').value;
-    // (this.addPetValues.tags.id = this.petForm.get('id').value),
-    //   (this.addPetValues.tags.name = this.petForm.get('name').value),
-
     this.addPetValues.tags = this.petForm.get('tags').value;
-    // this.addPetValues.tags = [
-    //   {
-    //     id: this.petForm.get('tags.id').value,
-    //     name: this.petForm.get('tags.name').value,
-    //   },
-    // ];
-
-    // = [
-    //   id: this.petForm.get('tags.id').value,
-    //   name: this.petForm.get('tags.name').value,
-    // ];
     this.addPetValues.status = this.petForm.get('status').value;
 
     if (this.addPetValues.name !== '' && this.addPetValues.status !== '') {
-      this.dataStorageService.addPet(this.addPetValues); // send to
-      this.addPetValues = {}; // reset form sau cu  this.petForm.reset();
+      this.dataStorageService.addPet(this.addPetValues);
+      this.addPetValues = {};
     }
 
     console.log(this.petForm);
   }
 
-  // Access the FormArray control	A getter provides access to the aliases in the form array instance compared to repeating the profileForm.get() method to get each instance. The form array instance represents an undefined number of controls in an array. It's convenient to access a control through a getter, and this approach is straightforward to repeat for additional controls.
-  // Use the getter syntax to create an aliases class property to retrieve the alias's form array control from the parent form group. [ https://angular.io/guide/reactive-forms#introduction-to-formbuilder ]
-
-  get photoUrls() {
-    return (this.petForm.get('photoUrls') as FormArray).controls;
-  }
-
   onAddPhotos() {
-    const control = new FormControl('');
+    const control = new FormControl('', Validators.required);
     (this.petForm.get('photoUrls') as FormArray).push(control);
-  }
-
-  get tags() {
-    return (this.petForm.get('tags') as FormArray).controls;
   }
 
   onAddTags() {
     (this.petForm.get('tags') as FormArray).push(
       new FormGroup({
-        id: new FormControl('', [Validators.pattern(/^[1-9]+[0-9]*$/)]),
-        name: new FormControl(''),
+        id: new FormControl(null, [
+          Validators.required,
+          ,
+          Validators.pattern(/^[1-9]+[0-9]*$/),
+        ]),
+        name: new FormControl(null, Validators.required),
       })
     );
   }
 
-  onDeleteTag(index: number) {
-    (<FormArray>this.petForm.get('tags')).removeAt(index);
-  }
-
   onDeletePhoto(index: number) {
     (<FormArray>this.petForm.get('photoUrls')).removeAt(index);
+  }
+
+  onDeleteTag(index: number) {
+    (<FormArray>this.petForm.get('tags')).removeAt(index);
   }
 
   onCancel() {
