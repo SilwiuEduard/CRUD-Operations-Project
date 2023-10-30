@@ -9,10 +9,6 @@
       style="margin-top: 20px"
     >
       <h2>Add a new pet to the store - Reactive approach</h2>
-
-      <button class="btn btn-success" (click)="getValues()" type="submit">
-        getValues
-      </button>
       <form
         [formGroup]="petForm"
         (ngSubmit)="submitForm(); petForm.reset()"
@@ -48,21 +44,21 @@
           />
         </div>
 
-        <span
+        <!-- <span
           class="help-block"
           *ngIf="name.errors?.['required'] && (name.touched || name.dirty)"
           >This field is mandatory, please fill a name.</span
-        >
-        <span
+        > -->
+        <!-- <span
           class="form-text text-danger"
           *ngIf="name.errors?.['minlength'] && (name.touched || name.dirty)"
           >Name is too short. at least 2 characters</span
-        >
-        <span
+        > -->
+        <!-- <span
           class="form-text text-danger"
           *ngIf="name.errors?.['pattern'] && (name.touched || name.dirty)"
           >first name should start with Alphabet</span
-        >
+        > -->
 
         <div class="form-group">
           <label class="form-label">Pet Status*</label>
@@ -89,8 +85,8 @@
 
         <hr />
 
-        <div formArrayName="photoUrls">
-          <label for="photoUrls">Photos</label>
+        <div formArrayName="photoUrls2">
+          <label for="photoUrls2">Photos</label>
           <br />
           <button class="btn btn-default" type="button" (click)="onAddPhotos()">
             Add Photo
@@ -98,7 +94,7 @@
 
           <div
             class="form-group"
-            *ngFor="let aPhoto of photoUrls; let i = index"
+            *ngFor="let aPhoto of photoUrls2; let i = index"
           >
             <div class="col-xs-10">
               <input
@@ -133,13 +129,16 @@
               name="catId"
               type="number"
               placeholder="Enter a valid category id"
-              formControlName="id"
+              formControlname="category.id"
             />
           </div>
           <div class="form-group">
             <!-- !! de asignat pentru fiecare optiune alt  id corespunzator -->
             <label class="form-label">Category Name</label>
-            <select class="form-control input-sm" formControlName="name">
+            <select
+              class="form-control input-sm"
+              formControlName="category.catName"
+            >
               <option value="not selected">Not selected</option>
               <option value="Dog">Dog</option>
               <option value="Cat">Cat</option>
@@ -168,7 +167,7 @@
                 type="number"
                 class="form-control"
                 placeholder="Enter a tag id"
-                formControlName="id"
+                formControlName="tag.id"
               />
             </div>
             <div class="col-xs-4">
@@ -176,7 +175,7 @@
                 type="text"
                 class="form-control"
                 placeholder="Enter a tag name"
-                formControlName="name"
+                formControlName="tag.name"
               />
             </div>
 
@@ -200,6 +199,8 @@
           <h4 class="alert-heading">Pet Submitted!</h4>
         </div>
         <!-- SUCCESS / ALERT BOOTSTRAP WINDOW END -->
+
+        <p>Form Status: {{ petForm.status }}</p>
 
         <button
           class="btn btn-success"

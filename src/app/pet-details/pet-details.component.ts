@@ -38,7 +38,7 @@ export class PetDetailsComponent implements OnInit {
     console.log(this.petArray, 'log petArray');
   }
 
-  isEmptyPhotoUrls(photoUrls: string[]): boolean {
+  isEmptyPhotoArray(photoUrls: string[]): boolean {
     // ( !photoUrls || photoUrls.length === 0 )
     if (!photoUrls) {
       return true; // Array is empty

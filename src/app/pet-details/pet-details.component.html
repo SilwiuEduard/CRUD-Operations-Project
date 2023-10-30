@@ -43,12 +43,14 @@
 
           {{ petProps.category.id !== 0 ? petProps.category.id : "" }}
         </li>
-        <li class="list-group-item" *ngFor="let tag of petProps.tags">
-          <b>Tag: </b>
-          <span style="background-color: rgb(194, 152, 152)" *ngIf="!tag.name"
-            >not available</span
-          >
-          {{ tag.name }}
+        <li class="list-group-item">
+          <b>Tags: </b>
+          <div *ngFor="let tag of petProps.tags">
+            <span style="background-color: rgb(194, 152, 152)" *ngIf="!tag.name"
+              >not available</span
+            >
+            {{ tag.name }}
+          </div>
         </li>
         <li class="list-group-item" *ngFor="let tag of petProps.tags">
           <b>Tag Id: </b>
@@ -63,12 +65,11 @@
           <b>Photos: </b> <br />
 
           <span
-            *ngIf="isEmptyPhotoUrls(petProps.photoUrls)"
+            *ngIf="isEmptyPhotoArray(petProps.photoUrls)"
             style="background-color: rgb(194, 152, 152)"
             >not available</span
           >
-          <!-- ! Problema - Daca este un url "stricat" va afisa alt-ul img-ului si
-          not available -->
+          <!-- ! Problema - Daca este un url "stricat" va afisa alt-ul img-ului si not available -->
           <img
             *ngFor="let photoUrl of petProps.photoUrls"
             [src]="photoUrl"
