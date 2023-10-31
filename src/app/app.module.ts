@@ -13,7 +13,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { PetListComponent } from './pet-list/pet-list.component';
 import { PetDetailsComponent } from './pet-details/pet-details.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
-import { AddPetReactiveComponent } from './add-pet-reactive/add-pet-reactive/add-pet-reactive.component';
+import { AddPetReactiveComponent } from './add-pet-reactive/add-pet-reactive.component';
 import { EditPetComponent } from './edit-pet/edit-pet.component';
 
 @NgModule({

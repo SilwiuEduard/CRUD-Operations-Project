@@ -1,177 +1,179 @@
-<div class="container-view">
-  <img src="../../assets/pets.png" class="pets-img" />
-</div>
+<div class="overall__container">
+  <div class="container__img">
+    <img src="../../assets/pets.png" class="pets-img" />
+  </div>
 
-<div class="container" style="margin-top: 110px">
-  <div class="row">
-    <div
-      class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"
-      style="margin-top: 20px"
-    >
-      <h2>Add pet - Template-driven approach</h2>
-      <form
-        #formAddRef="ngForm"
-        (ngSubmit)="onSubmit(formAddRef)"
-        style="margin-top: 50px"
-        autocomplete="off"
+  <div class="container" style="margin-top: 110px">
+    <div class="row">
+      <div
+        class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"
+        style="margin-top: 20px"
       >
-        <div class="form-group">
-          <label for="id">Pet Id*</label>
-          <input
-            ngModel
-            class="form-control"
-            id="id"
-            name="id"
-            type="number"
-            placeholder="Enter a valid id"
-            required
-            #idRef="ngModel"
-            pattern="^[1-9]\d*$"
-          />
-        </div>
+        <h2>Add pet - Template-driven approach</h2>
+        <form
+          #formAddRef="ngForm"
+          (ngSubmit)="onSubmit(formAddRef)"
+          style="margin-top: 50px"
+          autocomplete="off"
+        >
+          <div class="form-group">
+            <label for="id">Pet Id*</label>
+            <input
+              ngModel
+              class="form-control"
+              id="id"
+              name="id"
+              type="number"
+              placeholder="Enter a valid id"
+              required
+              #idRef="ngModel"
+              pattern="^[1-9]\d*$"
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="name">Pet Name*</label>
-          <input
-            ngModel
-            class="form-control"
-            id="name"
-            name="name"
-            type="text"
-            placeholder="Enter a name"
-            required
-            #nameRef="ngModel"
-          />
-        </div>
+          <div class="form-group">
+            <label for="name">Pet Name*</label>
+            <input
+              ngModel
+              class="form-control"
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Enter a name"
+              required
+              #nameRef="ngModel"
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="status">Pet Status*</label>
-          <select
-            ngModel
-            class="form-control"
-            id="status"
-            name="status"
-            [ngModel]="defaultStatus"
-            required
-            #statusRef="ngModel"
+          <div class="form-group">
+            <label for="status">Pet Status*</label>
+            <select
+              ngModel
+              class="form-control"
+              id="status"
+              name="status"
+              [ngModel]="defaultStatus"
+              required
+              #statusRef="ngModel"
+            >
+              <option value="available">Available</option>
+              <option value="pending">Pending</option>
+              <option value="sold">Sold</option>
+            </select>
+          </div>
+
+          <span class="help-block" *ngIf="!statusRef.valid && statusRef.touched"
+            >Please choose a status.
+          </span>
+
+          <p
+            class="help-block"
+            *ngIf="
+              (!formAddRef.valid && idRef.touched) ||
+              (!formAddRef.valid && nameRef.touched)
+            "
           >
-            <option value="available">Available</option>
-            <option value="pending">Pending</option>
-            <option value="sold">Sold</option>
-          </select>
-        </div>
+            Please fill all the mandatory(*) input fields before moving forward
+            and being able to submit the form.
+          </p>
 
-        <span class="help-block" *ngIf="!statusRef.valid && statusRef.touched"
-          >Please choose a status.
-        </span>
+          <hr />
 
-        <p
-          class="help-block"
-          *ngIf="
-            (!formAddRef.valid && idRef.touched) ||
-            (!formAddRef.valid && nameRef.touched)
-          "
-        >
-          Please fill all the mandatory(*) input fields before moving forward
-          and being able to submit the form.
-        </p>
+          <div class="form-group">
+            <label for="photo">Pet Photo</label>
+            <input
+              ngModel
+              class="form-control"
+              id="photo"
+              name="photo"
+              type="text"
+              placeholder="Enter a photo url"
+            />
+          </div>
+          <hr />
 
-        <hr />
+          <h3>Category</h3>
+          <div class="form-group">
+            <label for="categoryI">Category Id</label>
+            <input
+              ngModel
+              class="form-control"
+              id="categoryI"
+              name="categoryI"
+              type="number"
+              placeholder="Enter an id"
+              pattern="^[1-9]\d*$"
+            />
+          </div>
+          <div class="form-group">
+            <label for="categoryN">Category Name</label>
+            <input
+              ngModel
+              class="form-control"
+              id="categoryN"
+              name="categoryN"
+              type="text"
+              placeholder="Enter a category name"
+            />
+          </div>
 
-        <div class="form-group">
-          <label for="photo">Pet Photo</label>
-          <input
-            ngModel
-            class="form-control"
-            id="photo"
-            name="photo"
-            type="text"
-            placeholder="Enter a photo url"
-          />
-        </div>
-        <hr />
+          <hr />
 
-        <h3>Category</h3>
-        <div class="form-group">
-          <label for="categoryI">Category Id</label>
-          <input
-            ngModel
-            class="form-control"
-            id="categoryI"
-            name="categoryI"
-            type="number"
-            placeholder="Enter an id"
-            pattern="^[1-9]\d*$"
-          />
-        </div>
-        <div class="form-group">
-          <label for="categoryN">Category Name</label>
-          <input
-            ngModel
-            class="form-control"
-            id="categoryN"
-            name="categoryN"
-            type="text"
-            placeholder="Enter a category name"
-          />
-        </div>
+          <h3>Tags</h3>
+          <div class="form-group">
+            <label for="tagI">Tags Id</label>
+            <input
+              ngModel
+              class="form-control"
+              id="tagI"
+              name="tagI"
+              type="number"
+              placeholder="Enter an id"
+              pattern="^[1-9]\d*$"
+            />
+          </div>
+          <div class="form-group">
+            <label for="tagN">Tag Name</label>
+            <input
+              ngModel
+              class="form-control"
+              id="tagN"
+              name="tagN"
+              type="text"
+              placeholder="Enter a tag name"
+            />
+          </div>
 
-        <hr />
+          <!-- ! DE ADAUGAT METODA PENTRU A PUTEA ADAUGA MAI MULTE TAGURI, GEN UN + SI SA-MI DUPLICE CAMPURILE DE TAG // * DE VAZUT CURSUL LUI MAX CAND ADAUGAM INGREDIENTE -->
+          <hr />
 
-        <h3>Tags</h3>
-        <div class="form-group">
-          <label for="tagI">Tags Id</label>
-          <input
-            ngModel
-            class="form-control"
-            id="tagI"
-            name="tagI"
-            type="number"
-            placeholder="Enter an id"
-            pattern="^[1-9]\d*$"
-          />
-        </div>
-        <div class="form-group">
-          <label for="tagN">Tag Name</label>
-          <input
-            ngModel
-            class="form-control"
-            id="tagN"
-            name="tagN"
-            type="text"
-            placeholder="Enter a tag name"
-          />
-        </div>
+          <!-- SUCCESS / ALERT BOOTSTRAP WINDOW  -->
+          <div class="alert alert-success" role="alert" *ngIf="isSubmitted">
+            <h4 class="alert-heading">Pet Submitted!</h4>
+          </div>
+          <!-- SUCCESS / ALERT BOOTSTRAP WINDOW END -->
+          <button
+            [disabled]="!formAddRef.valid"
+            class="btn btn-success"
+            type="submit"
+          >
+            Submit
+          </button>
 
-        <!-- ! DE ADAUGAT METODA PENTRU A PUTEA ADAUGA MAI MULTE TAGURI, GEN UN + SI SA-MI DUPLICE CAMPURILE DE TAG // * DE VAZUT CURSUL LUI MAX CAND ADAUGAM INGREDIENTE -->
-        <hr />
+          |
 
-        <!-- SUCCESS / ALERT BOOTSTRAP WINDOW  -->
-        <div class="alert alert-success" role="alert" *ngIf="isSubmitted">
-          <h4 class="alert-heading">Pet Submitted!</h4>
-        </div>
-        <!-- SUCCESS / ALERT BOOTSTRAP WINDOW END -->
-        <button
-          [disabled]="!formAddRef.valid"
-          class="btn btn-success"
-          type="submit"
-        >
-          Submit
-        </button>
+          <button class="btn btn-danger" type="button" (click)="onCancel()">
+            Reset
+          </button>
 
-        |
-
-        <button class="btn btn-danger" type="button" (click)="onCancel()">
-          Reset
-        </button>
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </form>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+        </form>
+      </div>
     </div>
   </div>
 </div>
