@@ -1,4 +1,4 @@
-# PetStoreSilviu
+# PetStoreSilviu Angular project with CRUD operations
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
@@ -8,42 +8,42 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## Project Infos
 
-Listare animale (pagină individuală)
+1. Listing Animals (individual page)
 
-Filtru pentru status (available, pending, sold);
+a) Filter by status (available, pending, sold);
 
-Capul de tabel să fie format din: Index (începe de la 1), Nume, Status, Acțiuni;
+b) Table header should consist of: Index (starting from 1), Name, Status, Actions;
 
-În coloana “Acțiuni” să existe butoane pentru vizualizare, editare, ștergere element;
+c) In the "Actions" column, there should be buttons for viewing, editing, and deleting an element;
 
-Adăugare (pagină individuală)
+2. Adding (individual page)
 
-Să existe validare pentru câmpurile obligatorii (nume, status și id de tip number);
+a) There should be validation for mandatory fields (name, status, and an ID of type number);
 
-Opțiunile dropdown-ului pentru status sunt: available, pending, sold. Statusul prestabilit sa fie “available”;
+b) Dropdown options for status are: available, pending, sold. The default status should be "available";
 
-După trimiterea formularului, să afișezi notificare de succes și eroare;
+c) After submitting the form, display a success and error notification;
 
-În caz de succes, după adăugare să se facă redirect spre lista de animale;
+d) In case of success, after adding, redirect to the list of animals;
 
-Editare (pagină individuală)
+3. Editing (individual page) // working on it.
 
-Să existe validare pentru câmpurile obligatorii;
+a) There should be validation for mandatory fields;
 
-După trimiterea formularului, să afișezi notificare de succes și eroare;
+b) After submitting the form, display a success and error notification;
 
-În caz de succes, după editare să se facă redirect spre lista de animale.
+c) In case of success, after editing, redirect to the list of animals.
 
-Vizualizare (pagină individuală)
+4. Viewing (individual page)
 
-Afișăm informațiile disponibile, chiar dacă sunt minimale.
+a) Display available information, even if it's minimal.
 
-În caz că nu există anumite informații să afisam un placeholder sau un mesaj de tipul “Acest element nu are categorii, tag-uri, imagini etc.”;
+b) In case certain information is missing, display a placeholder or a message like "This element has no categories, tags, images, etc."
 
-Ștergere
+5. Deletion
 
-Să existe un modal/pop-up pentru confirmarea ștergerii;
+a) There should be a modal/pop-up for confirming the deletion;
 
-Să existe notificare de succes și eroare;
+b) Display a success and error notification;
 
-Să se actualizeze lista automat după ștergerea unui element;
+c) Automatically update the list after deleting an element;

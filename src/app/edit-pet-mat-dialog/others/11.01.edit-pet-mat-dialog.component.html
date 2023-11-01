@@ -20,16 +20,12 @@
 
     <h4>Category</h4>
     <mat-form-field formGroupName="category">
-      <mat-select
-        placeholder="Select category"
-        formControlName="id"
-        (change)="onCategorySelect($event)"
-      >
-        <mat-option value="1"> Not selected</mat-option>
-        <mat-option value="2"> Dog</mat-option>
-        <mat-option value="3"> Cat</mat-option>
-        <mat-option value="4"> Bird</mat-option>
-        <mat-option value="5"> Fish</mat-option>
+      <mat-select placeholder="Select category" formControlName="name">
+        <mat-option value="not selected"> Not selected</mat-option>
+        <mat-option value="dog"> Dog</mat-option>
+        <mat-option value="cat"> Cat</mat-option>
+        <mat-option value="bird"> Bird</mat-option>
+        <mat-option value="fish"> Fish</mat-option>
       </mat-select>
     </mat-form-field>
 

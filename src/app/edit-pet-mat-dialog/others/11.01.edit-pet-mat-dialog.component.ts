@@ -29,13 +29,13 @@ export class EditPetMatDialogComponent {
   ) {
     this.petEditArray = pet;
 
-    console.log('log petEditArray: ', this.petEditArray, 'log pet: ', pet);
+    console.log('petEditArray: ', this.petEditArray);
 
     this.petFormEdit = fb.group({
-      id: [this.petEditArray.id],
+      id: [pet.id],
       category: this.fb.group({
-        id: [this.petEditArray.category.id],
-        name: [this.petEditArray.category.name, Validators.required],
+        id: [pet.category.id],
+        name: [pet.category.name, Validators.required],
       }),
       name: [pet.name, [Validators.required, Validators.pattern('[a-zA-Z].*')]],
       photoUrls: [pet.photoUrls],
@@ -48,30 +48,7 @@ export class EditPetMatDialogComponent {
       status: [pet.status, Validators.required],
     });
 
-    console.log('log: petFormEdit', this.petFormEdit);
-  }
-
-  onCategorySelect(event: Event) {
-    const selectedValue = (event.target as HTMLSelectElement).value;
-    let categoryId = '1';
-    let categoryName = 'Not selected';
-    console.log(selectedValue);
-    if (selectedValue === '2') {
-      categoryId = '2';
-      categoryName = 'Dog';
-    } else if (selectedValue === '3') {
-      categoryId = '3';
-      categoryName = 'Cat';
-    } else if (selectedValue === '4') {
-      categoryId = '4';
-      categoryName = 'Bird';
-    } else if (selectedValue === '5') {
-      categoryId = '5';
-      categoryName = 'Fish';
-    }
-
-    this.petFormEdit.get('category.id').setValue(categoryId);
-    this.petFormEdit.get('category.name').setValue(categoryName);
+    console.log(this.petFormEdit, 'console.log: petFormEdit');
   }
 
   close(): void {

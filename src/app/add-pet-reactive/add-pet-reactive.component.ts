@@ -111,6 +111,9 @@ export class AddPetReactiveComponent {
       categoryName = 'Cat';
     } else if (selectedValue === '4') {
       categoryId = '4';
+      categoryName = 'Bird';
+    } else if (selectedValue === '5') {
+      categoryId = '5';
       categoryName = 'Fish';
     }
 
