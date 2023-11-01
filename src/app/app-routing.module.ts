@@ -8,6 +8,7 @@ import { AddPetComponent } from './add-pet/add-pet.component';
 import { EditPetComponent } from './edit-pet/edit-pet.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AddPetReactiveComponent } from './add-pet-reactive/add-pet-reactive.component';
+import { EditPetMatDialogComponent } from './edit-pet-mat-dialog/edit-pet-mat-dialog.component';
 // import { PetsResolverService } from './shared/pets-resolver.service';
 
 const appRoutes: Routes = [
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
   { path: 'add', component: AddPetComponent },
   { path: 'addR', component: AddPetReactiveComponent },
   { path: 'edit', component: EditPetComponent },
-  { path: 'test', component: PetDetailsComponent },
+  { path: 'editMD', component: EditPetMatDialogComponent },
+  { path: 'editMD2', component: EditPetMatDialogComponent },
   { path: '**', redirectTo: '/home' },
 ];
 

@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&family=Roboto&family=Young+Serif&display=swap");
+
+.overall__container {
+  padding: 12px;
+  background-color: #f8f4f2;
+  width: 50vh;
+  height: 70vh;
+  text-align: center;
+  font-family: young serif;
+}
+
+/* 
+.container {
+  margin-top: 30px;
+  min-width: 300px;
+} */

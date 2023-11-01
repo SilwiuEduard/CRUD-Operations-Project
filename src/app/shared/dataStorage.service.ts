@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { Observable, Subject, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 
 import { PetService } from './pet.service';
 import { PetModel } from './pet.model';
@@ -11,6 +11,10 @@ import { PetInterface } from '../shared/pet.interface';
 export class DataStorageService {
   readonly apiHost = 'https://petstore.swagger.io';
   readonly apiVersion = 'v2';
+
+  // private subject = new BehaviorSubject<PetInterface[]>([]); //RxJs In Practice 38
+
+  // pets$: Observable<PetInterface[]> = this.subject.asObservable(); //RxJs In Practice 38
 
   pets: any[] = [];
 
@@ -102,9 +106,10 @@ export class DataStorageService {
     this.pets = [];
     this.http
       .put<any>(`${this.apiHost}/${this.apiVersion}/pet`, editedPetForm)
-      .subscribe((data) => {
-        this.pets = data;
-      });
+      .subscribe(
+        (data) => (this.pets = data),
+        (err) => console.log('Error saving pet', err)
+      );
     return this.pets;
   }
 

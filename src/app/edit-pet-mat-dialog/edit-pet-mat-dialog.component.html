@@ -1,0 +1,49 @@
+<div class="overall__container">
+  <mat-dialog-content [formGroup]="petFormEdit" autocomplete="off">
+    <h3>Edit Pet</h3>
+    <h2 mat-dialog-title>{{ petEditArray.name }}</h2>
+
+    <mat-dialog-content>
+      <p>ID: {{ petEditArray.id }}</p>
+    </mat-dialog-content>
+
+    <h4>Name</h4>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" />
+    </mat-form-field>
+
+    <h4>Category</h4>
+    <mat-form-field>
+      <mat-select placeholder="Select category" formControlName="category">
+        <mat-option value="not selected"> Not selected</mat-option>
+        <mat-option value="dog"> Dog</mat-option>
+        <mat-option value="cat"> Cat</mat-option>
+        <mat-option value="bird"> Bird</mat-option>
+        <mat-option value="fish"> Fish</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <h4>Status</h4>
+    <mat-form-field>
+      <mat-select formControlName="status">
+        <mat-option value="available"> Available</mat-option>
+        <mat-option value="pending"> Pending</mat-option>
+        <mat-option value="sold"> Sold</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-form-field>
+      <textarea
+        matInput
+        placeholder="Description"
+        formControlName="longDescription"
+      >
+      </textarea>
+    </mat-form-field> -->
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="btn btn-danger" (click)="close()">Back</button> |
+    <button class="btn btn-warning" #saveButton (click)="save()">Save</button>
+  </mat-dialog-actions>
+</div>

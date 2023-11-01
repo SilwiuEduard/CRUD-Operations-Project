@@ -14,3 +14,8 @@ body {
 body {
   font-family: young serif;
 }
+
+/* ! Doesn't work */
+/* .custom .mat-dialog-container {
+  border-radius: 30px !important;
+} */

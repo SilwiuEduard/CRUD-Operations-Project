@@ -103,6 +103,30 @@ export class PetListComponent implements OnInit {
     }
   }
 
+  // onEditPetClick(petIndex: number) { // ! prima versiunea scrisa de mine
+  //   this.selectedPetIndex = petIndex;
+  //   this.petService.selectedPetIndex = petIndex;
+  //   this.selectedPetData = this.filteredPets[petIndex];
+  //   if (this.selectedPetIndex > -1) {
+  //     this.petService.singlePetInfo = [];
+  //     this.petService.addPetInfo(this.selectedPetData);
+  //     this.id = this.selectedPetData.id;
+  //     this.router.navigate(['/edit', this.id]);
+  //   }
+  // }
+
+  // onEditOnDialog(): void { //! De vazut metoda de .afterClosed
+  //   const dialogRef = this.matDialog.open(EditPetMatDialogComponent, {
+  //     panelClass: 'custom',
+  //     //   data: { name: this.name, animal: this.animal },
+  //     // });
+
+  //     // dialogRef.afterClosed().subscribe((result) => {
+  //     //   console.log('The dialog was closed');
+  //     //   this.animal = result;
+  //   });
+  // }
+
   editPetDialog(pet: PetInterface) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

@@ -15,10 +15,10 @@ export class PetService {
 
   addPetInfo(infos: any) {
     this.singlePetInfo.push(infos);
-  } // Acest lucru adaugă datele rândului selectat (selectedRowData) în vectorul sau lista menționată mai devreme (singlePetInfo) folosind serviciul myService. Aceasta poate fi utilizată ulterior pentru a furniza date pentru afișare sau procesare în altă parte a aplicației.
+  }
 
-  addInfo(informations: any) {
-    this.infosPet.push(informations);
+  addInfo(information: any) {
+    this.infosPet.push(information);
   }
 
   getListLength() {

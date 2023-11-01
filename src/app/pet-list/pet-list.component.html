@@ -73,9 +73,11 @@
                 /> </a
             ></span>
             <!-- EDIT PET DETAILS -->
-            <span
-              ><a [routerLink]="['/edit', pet.id]"
+            <span>
+              <!-- [routerLink]="['/editMD', pet.id]" -->
+              <a
                 ><img
+                  (click)="editPetDialog(pet)"
                   src="../../../assets/edit.png"
                   style="cursor: pointer" /></a
             ></span>

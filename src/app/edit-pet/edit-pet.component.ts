@@ -20,13 +20,13 @@ import { DataStorageService } from '../shared/dataStorage.service';
 })
 export class EditPetComponent {
   OnCancel() {}
-  // constructor(
-  //   private router: Router,
-  //   private route: ActivatedRoute,
-  //   private petService: PetService,
-  //   private cdr: ChangeDetectorRef,
-  //   private dataStorageService: DataStorageService
-  // ) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private petService: PetService,
+    private cdr: ChangeDetectorRef,
+    private dataStorageService: DataStorageService
+  ) {}
   // messageSuccess: boolean = false;
   // messageWarning: boolean = false;
   // infoPet: any[] = [];

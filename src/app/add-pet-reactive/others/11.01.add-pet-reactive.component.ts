@@ -82,12 +82,7 @@ export class AddPetReactiveComponent {
   }
 
   getValues() {
-    console.log(
-      'console.log petForm: ',
-      this.petForm,
-      'console.log petForm.value: ',
-      this.petForm.value
-    );
+    console.log(this.petForm, this.petForm.value);
   }
   onInputChange() {
     if (this.petForm.valid) {
@@ -117,6 +112,46 @@ export class AddPetReactiveComponent {
     this.petForm.get('category.id').setValue(categoryId);
     this.petForm.get('category.name').setValue(categoryName);
   }
+
+  // onCategorySelect(event: any) {
+  //   const categoryId = +event.target.value; // Convertiți valoarea la număr
+
+  //   if (categoryId === 1) {
+  //     // Dacă categoria este "Not selected"
+  //     const categoryFormGroup = this.petForm.get('category') as FormGroup;
+  //     categoryFormGroup.get('id')?.setValue(1);
+  //     categoryFormGroup.get('name')?.setValue('Not selected');
+  //   } else {
+  //     // Altfel, obțineți numele categoriei pe baza ID-ului
+  //     const categoryName = this.getCategoryNameById(categoryId);
+
+  //     // Setează ID-ul și numele categoriei selectate în formular
+  //     const categoryFormGroup = this.petForm.get('category') as FormGroup;
+  //     const categoryControl = categoryFormGroup.get('id');
+  //     const nameControl = categoryFormGroup.get('name');
+
+  //     categoryControl?.setValue(categoryId);
+  //     nameControl?.setValue(categoryName);
+  //     categoryControl?.updateValueAndValidity();
+  //     nameControl?.updateValueAndValidity();
+  //   }
+  // }
+
+  // getCategoryNameById(categoryId: number): string {
+  //   // Mapare ID-ul categoriei la nume
+  //   switch (categoryId) {
+  //     case 1:
+  //       return 'Not selected';
+  //     case 2:
+  //       return 'Dog';
+  //     case 3:
+  //       return 'Cat';
+  //     case 4:
+  //       return 'Fish';
+  //     default:
+  //       return 'Not selected';
+  //   }
+  // }
 
   submitForm() {
     if (this.petForm.valid) {
@@ -149,7 +184,7 @@ export class AddPetReactiveComponent {
       this.addPetValues = {};
     }
 
-    console.log(this.petForm, 'console.log on submitForm');
+    console.log(this.petForm);
   }
 
   onAddPhotos() {
