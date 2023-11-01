@@ -26,7 +26,7 @@ c) After submitting the form, display a success and error notification;
 
 d) In case of success, after adding, redirect to the list of animals;
 
-3. Editing (individual page) // working on it.
+3. Editing (individual page) // ✍️ working on it.
 
 a) There should be validation for mandatory fields;
 
