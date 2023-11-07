@@ -27,14 +27,14 @@
     <mat-form-field formGroupName="category">
       <mat-select
         placeholder="Select category"
-        formControlName="name"
-        (change)="onCategorySelect()"
+        formControlName="id"
+        (change)="onCategorySelect($event)"
       >
-        <mat-option value="Not selected">Not selected</mat-option>
-        <mat-option value="Dog">Dog</mat-option>
-        <mat-option value="Cat">Cat</mat-option>
-        <mat-option value="Bird">Bird</mat-option>
-        <mat-option value="Fish">Fish</mat-option>
+        <mat-option value="1"> Not selected</mat-option>
+        <mat-option value="2"> Dog</mat-option>
+        <mat-option value="3"> Cat</mat-option>
+        <mat-option value="4"> Bird</mat-option>
+        <mat-option value="5"> Fish</mat-option>
       </mat-select>
     </mat-form-field>
 

@@ -152,12 +152,12 @@ export class AddPetReactiveComponent {
       this.addPetValues = {};
     }
 
-    console.log(this.petForm, 'console.log on submitForm');
+    // console.log(this.petForm, 'console.log on submitForm');
   }
 
   onAddPhotos() {
-    const control = new FormControl('', Validators.required);
-    (this.petForm.get('photoUrls') as FormArray).push(control);
+    const newPhotoUrl = new FormControl('', Validators.required);
+    (this.petForm.get('photoUrls') as FormArray).push(newPhotoUrl);
   }
 
   onAddTags() {

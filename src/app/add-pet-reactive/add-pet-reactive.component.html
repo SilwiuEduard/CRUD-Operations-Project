@@ -107,10 +107,6 @@
               class="form-group"
               *ngFor="let aPhoto of photoUrls; let i = index"
             >
-              <span class="help-block" *ngIf="!aPhoto.valid">
-                <br />Please provide an image url or remove the property
-              </span>
-
               <div class="col-xs-10">
                 <input
                   type="text"
@@ -129,6 +125,11 @@
                   X
                 </button>
               </div>
+
+              <span class="help-block" *ngIf="!aPhoto.valid">
+                <br />
+                <br />Please provide an image url or remove the property
+              </span>
               <br />
             </div>
           </div>
@@ -164,10 +165,6 @@
               *ngFor="let tag of tags; let i = index"
               [formGroupName]="i"
             >
-              <span class="help-block" *ngIf="!tag.valid">
-                <br />Please provide both the ID and the number of tags, or
-                remove the tag object</span
-              >
               <div class="col-xs-4">
                 <input
                   type="number"
@@ -194,7 +191,13 @@
                   X
                 </button>
               </div>
+
               <br />
+              <span class="help-block" *ngIf="!tag.valid">
+                <br />
+                Please provide both the ID and the number of tags, or remove the
+                tag object
+              </span>
             </div>
 
             <hr />

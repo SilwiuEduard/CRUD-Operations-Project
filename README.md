@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## Project Infos
 
-1. Listing Animals (individual page)
+1. Listing Animals (individual page) //done
 
 a) Filter by status (available, pending, sold);
 
@@ -16,7 +16,7 @@ b) Table header should consist of: Index (starting from 1), Name, Status, Action
 
 c) In the "Actions" column, there should be buttons for viewing, editing, and deleting an element;
 
-2. Adding (individual page)
+2. Adding (individual page) //done
 
 a) There should be validation for mandatory fields (name, status, and an ID of type number);
 
@@ -34,7 +34,7 @@ b) After submitting the form, display a success and error notification;
 
 c) In case of success, after editing, redirect to the list of animals.
 
-4. Viewing (individual page)
+4. Viewing (individual page) //done
 
 a) Display available information, even if it's minimal.
 
