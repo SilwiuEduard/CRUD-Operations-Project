@@ -156,7 +156,7 @@ export class PetListComponent implements OnInit {
   //   const modal = document.getElementById('deleteModal') as HTMLElement;
   //   modal.style.display = 'none';
   //   if (this.selectedPetIndex > -1) {
-  //     this.dataStorageService.deletePets(this.selectedPetData.id);
+  //     this.dataStorageService.deletePet(this.selectedPetData.id);
   //     this.filteredPets.splice(this.selectedPetIndex, 1);
   //     this.selectedPetIndex = -1;
   //     this.selectedPetData = null;

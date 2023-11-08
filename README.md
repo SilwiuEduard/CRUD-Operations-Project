@@ -6,9 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Project Infos
+## Project Infos ✍️
 
-1. Listing Animals (individual page) //done
+1. Listing Animals (individual page)
 
 a) Filter by status (available, pending, sold);
 
@@ -16,7 +16,7 @@ b) Table header should consist of: Index (starting from 1), Name, Status, Action
 
 c) In the "Actions" column, there should be buttons for viewing, editing, and deleting an element;
 
-2. Adding (individual page) //done
+2. Adding (individual page)
 
 a) There should be validation for mandatory fields (name, status, and an ID of type number);
 
@@ -26,7 +26,7 @@ c) After submitting the form, display a success and error notification;
 
 d) In case of success, after adding, redirect to the list of animals;
 
-3. Editing (individual page) // ✍️ working on it.
+3. Editing (individual page)
 
 a) There should be validation for mandatory fields;
 
@@ -34,7 +34,7 @@ b) After submitting the form, display a success and error notification;
 
 c) In case of success, after editing, redirect to the list of animals.
 
-4. Viewing (individual page) //done
+4. Viewing (individual page)
 
 a) Display available information, even if it's minimal.
 

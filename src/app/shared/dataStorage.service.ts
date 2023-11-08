@@ -33,12 +33,12 @@ export class DataStorageService {
 
     if (status === 'all') {
       this.http
-        .get<PetInterface[]>(
+        .get<any[]>(
           `${this.apiHost}/${this.apiVersion}/pet/findByStatus?status=available`
         )
         // .pipe(catchError(this.handleError))
         .subscribe((data: any[]) => {
-          console.log('pets on available list : ', data.length);
+          console.log('pets on available list : ', data.length, data);
           for (let i = 0; i < data.length; i++) {
             this.pets.push(data[i]);
           }
@@ -49,7 +49,7 @@ export class DataStorageService {
         )
         // .pipe(catchError(this.handleError))
         .subscribe((data: any[]) => {
-          console.log('pets on pending list : ', data.length);
+          console.log('pets on pending list : ', data.length, data);
           for (let i = 0; i < data.length; i++) {
             this.pets.push(data[i]);
           }
@@ -113,7 +113,7 @@ export class DataStorageService {
     return this.pets;
   }
 
-  deletePets(petId: number) {
+  deletePet(petId: number) {
     this.pets = [];
     this.http
       .delete<any>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
@@ -121,6 +121,7 @@ export class DataStorageService {
       .subscribe((data) => {
         this.pets = data;
       });
+    return this.pets;
   }
 
   private handleError(error: any) {

@@ -14,26 +14,12 @@ import { EditPetMatDialogComponent } from '../edit-pet-mat-dialog/edit-pet-mat-d
   styleUrls: ['./pet-list.component.css'],
 })
 export class PetListComponent implements OnInit {
-  apiPets: any[] = [];
-  // Multimea unde va fi stocata data de la API
-  // apiPets: PetInterface[] = [];
-
-  selectedPetIndex: number = -1;
-  // Pet Index ajustat pentru a incepe de la 1 in tabel // * <td>{{ i + 1 }}</td>
-
-  filteredPets: any[] = [];
-  //  Aici se obțin datele corespunzătoare randului selectat din lista numita filteredPets.
-
-  // filteredPets: PetInterface[] = []; //  Aici se obțin datele corespunzătoare randului selectat din lista numita filteredPets. // ! de implementat cu PetInterface!
-
+  apiPets: PetInterface[] = [];
+  selectedPetIndex: number = -1; // because in HTML index value is i + 1
   selectedPetData: any = null;
-
   messageRemove = false;
-
-  id: number; // Proprietate pentru stocare index obiecte
-
+  id: number; // prop to store index
   // fetchPetsLoading = false; //loading animation
-
   error = null;
 
   constructor(
@@ -88,14 +74,11 @@ export class PetListComponent implements OnInit {
     this.selectedPetIndex = petIndex;
     this.selectedPetData = this.apiPets[petIndex];
 
-    // Aici, se obțin datele corespunzătoare rândului selectat dintr-o listă numită filteredPets.
     if (this.selectedPetIndex > -1) {
       this.petService.singlePetInfo = [];
 
-      // Aceasta golește un vector sau o listă numită singlePetInfo în serviciul PetServiceV2. Golirea acestei liste poate fi efectuată pentru a face loc pentru noile detalii ale elementului selectat.
       this.petService.addPetInfo(this.selectedPetData);
 
-      // Acest lucru adaugă datele rândului selectat (selectedRowData) în vectorul sau lista menționată mai devreme (singlePetInfo) folosind serviciul myService. Aceasta poate fi utilizată ulterior pentru a furniza date pentru afișare sau procesare în altă parte a aplicației.
       console.log();
       this.id = this.selectedPetData.id;
 
@@ -116,36 +99,46 @@ export class PetListComponent implements OnInit {
     );
   }
 
-  onDelete(rowIndex: number) {
-    this.selectedPetIndex = rowIndex;
-    this.selectedPetData = this.filteredPets[rowIndex];
-    // const modal = document.getElementById('deleteModal') as HTMLElement;
-    // modal.style.display = 'block';
+  onDelete(petIndex: number) {
+    this.selectedPetIndex = petIndex;
+    this.selectedPetData = this.apiPets[petIndex];
+
+    const backdrop = document.querySelector('.backdrop') as HTMLElement;
+    const modal = document.querySelector('.myModal') as HTMLElement;
+    backdrop.classList.add('open');
+    modal.classList.add('open');
+  }
+
+  // ! De IMPLEMENTAT
+  confirmDelete() {
+    // debugger;
+    const backdrop = document.querySelector('.backdrop') as HTMLElement;
+    const modal = document.querySelector('.myModal') as HTMLElement;
+
+    if (this.selectedPetIndex > -1) {
+      this.dataStorageService.deletePet(this.selectedPetData.id);
+      this.apiPets.splice(this.selectedPetIndex, 1);
+      this.selectedPetIndex = -1;
+      this.selectedPetData = null;
+      this.messageRemove = true;
+      setTimeout(() => {
+        this.messageRemove = false;
+        backdrop.classList.remove('open');
+        modal.classList.remove('open');
+      }, 1000);
+    }
+
+    this.apiPets = this.dataStorageService.fetchPets('all');
+  }
+
+  cancelDelete() {
+    const backdrop = document.querySelector('.backdrop') as HTMLElement;
+    const modal = document.querySelector('.myModal') as HTMLElement;
+    backdrop.classList.remove('open');
+    modal.classList.remove('open');
   }
 
   // onHandleError() {
   //   this.error = null;
-  // }
-
-  // ! De IMPLEMENTAT
-  // confirmDelete() {
-  //   const modal = document.getElementById('deleteModal') as HTMLElement;
-  //   modal.style.display = 'none';
-  //   if (this.selectedPetIndex > -1) {
-  //     this.dataStorageService.deletePets(this.selectedPetData.id);
-  //     this.filteredPets.splice(this.selectedPetIndex, 1);
-  //     this.selectedPetIndex = -1;
-  //     this.selectedPetData = null;
-  //     this.messageRemove = true;
-  //     setTimeout(() => {
-  //       this.messageRemove = false;
-  //     }, 1000);
-  //   }
-  // }
-
-  // ! De IMPLEMENTAT
-  // cancelDelete() {
-  //   const modal = document.getElementById('deleteModal') as HTMLElement;
-  //   modal.style.display = 'none';
   // }
 }

@@ -53,7 +53,7 @@ export class PetListComponent implements OnInit {
   }
 
   OnDeletePet(index: any) {
-    this.dataStorageService.deletePets();
+    this.dataStorageService.deletePet();
   }
 
   // // ! TO IMPLEMENT - FILTER DATA ON TABLE

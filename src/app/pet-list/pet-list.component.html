@@ -62,9 +62,6 @@
             >
           </td>
           <td class="btn-group">
-            <!-- VIEW PET DETAILS -->
-            <!-- (click)="onView(i)" -->
-            <!-- [routerLink]="['/list', pet.id]" -->
             <span>
               <a (click)="onView(i)">
                 <img
@@ -74,7 +71,6 @@
             ></span>
             <!-- EDIT PET DETAILS -->
             <span>
-              <!-- [routerLink]="['/editMD', pet.id]" -->
               <a
                 ><img
                   (click)="editPetDialog(pet)"
@@ -101,16 +97,26 @@
     </table>
   </section>
 </main>
+m,
 
-<!-- <div id="deleteModal" class="modal">
-    <div class="modal-content">
-      <p>Are you sure you want to delete this pet?</p>
-      <button (click)="confirmDelete()">YES</button>
-      <button (click)="cancelDelete()">CANCEL</button>
-    </div>
-  </div>
-  <div *ngIf="messageRemove" class="alert alert-success" role="alert">
+<!-- Modal -->
+<div class="backdrop"></div>
+<div class="myModal">
+  <h4 class="myModal__title">Are you sure you want to delete this pet?</h4>
+
+  <button class="btn btn-success myModal__btn" (click)="confirmDelete()">
+    YES
+  </button>
+  <button class="btn btn-danger myModal__btn" (click)="cancelDelete()">
+    CANCEL
+  </button>
+
+  <div
+    style="margin-top: 1rem"
+    *ngIf="messageRemove"
+    class="alert alert-success"
+    role="alert"
+  >
     Your pet was deleted successfully!
-  </div> -->
-
-<!-- </div> -->
+  </div>
+</div>

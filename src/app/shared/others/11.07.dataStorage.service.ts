@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { Observable, Subject, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 
 import { PetService } from './pet.service';
 import { PetModel } from './pet.model';
@@ -9,12 +9,14 @@ import { PetInterface } from '../shared/pet.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
-  pets: any[] = [];
-
-  petTest: any[];
-
   readonly apiHost = 'https://petstore.swagger.io';
   readonly apiVersion = 'v2';
+
+  // private subject = new BehaviorSubject<PetInterface[]>([]); //RxJs In Practice 38
+
+  // pets$: Observable<PetInterface[]> = this.subject.asObservable(); //RxJs In Practice 38
+
+  pets: any[] = [];
 
   // ### METHODS ###
   // <<   POST |   ADD A NEW PET >>  petstore.swagger.io/v2/pet
@@ -31,7 +33,7 @@ export class DataStorageService {
 
     if (status === 'all') {
       this.http
-        .get<any[]>(
+        .get<PetInterface[]>(
           `${this.apiHost}/${this.apiVersion}/pet/findByStatus?status=available`
         )
         // .pipe(catchError(this.handleError))
@@ -79,28 +81,15 @@ export class DataStorageService {
   }
 
   getPetById(petId: number) {
-    // let pet: any[] = [];
+    let pet: any[] = [];
     this.http
       .get<any>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
-      // .pipe(catchError(this.handleError))
-      .subscribe((petsInfos: any[]) => {
-        console.log(petsInfos, 'petsInfos');
-        this.petTest = petsInfos;
+      .pipe(catchError(this.handleError))
+      .subscribe((data: any[]) => {
+        pet.push(data);
       });
-    return this.petTest;
+    return pet;
   }
-
-  // ! CODUL INAINTE
-  // getPetById(petId: number) {
-  //   let pet: any[] = [];
-  //   this.http
-  //     .get<any>(`${this.apiHost}/${this.apiVersion}/pet/${petId}`)
-  //     .pipe(catchError(this.handleError))
-  //     .subscribe((data: any[]) => {
-  //       pet.push(data);
-  //     });
-  //   return pet;
-  // }
 
   addPet(petForm: any) {
     this.pets = [];
@@ -117,9 +106,10 @@ export class DataStorageService {
     this.pets = [];
     this.http
       .put<any>(`${this.apiHost}/${this.apiVersion}/pet`, editedPetForm)
-      .subscribe((data) => {
-        this.pets = data;
-      });
+      .subscribe(
+        (data) => (this.pets = data),
+        (err) => console.log('Error saving pet', err)
+      );
     return this.pets;
   }
 
