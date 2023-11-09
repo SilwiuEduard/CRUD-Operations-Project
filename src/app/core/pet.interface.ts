@@ -1,32 +1,40 @@
+export interface PetInterface {
+  id: any;
+  category: {
+    id: any;
+    name: string;
+  };
+  name: string;
+  photoUrls: [string];
+  tags: [
+    {
+      id: any;
+      name: string;
+    }
+  ];
+  status: string;
+}
+// === FIRST VERSION of Interface ===
 // export interface PetInterface {
 //   id: number;
-//   category: { id: number; name: string };
+//   category: PetCategory;
 //   name: string;
 //   photoUrls: string[];
-//   tags: { id: number; name: string }[];
+//   tags: PetTag[];
 //   status: string;
 // }
 
-export interface PetInterface {
-  id: number;
-  category: PetCategory;
-  name: string;
-  photoUrls: string[];
-  tags: PetTag[];
-  status: string;
-}
+// export interface PetCategory {
+//   id: number;
+//   name: string;
+// }
 
-export interface PetCategory {
-  id: number;
-  name: string;
-}
+// export interface PetTag {
+//   id: number;
+//   name: string;
+// }
 
-export interface PetTag {
-  id: number;
-  name: string;
-}
-
-// API SERVER - EXAMPLE
+// === API SERVER - EXAMPLE ===
 
 // {
 //   "id": 0,
