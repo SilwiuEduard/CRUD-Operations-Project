@@ -1,12 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { PetModel } from '../shared/pet.model';
-import { PetService } from '../shared/pet.service';
-import { PetInterface } from '../shared/pet.interface';
-import { DataStorageService } from '../shared/dataStorage.service';
-import { Subscription } from 'rxjs';
+import { PetService } from '../../core/pet.service';
+import { PetInterface } from '../../core/pet.interface';
+import { DataStorageService } from '../../core/dataStorage.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { EditPetMatDialogComponent } from '../edit-pet-mat-dialog/edit-pet-mat-dialog.component';
+import { EditPetMatDialogComponent } from '../../components/edit-pet-mat-dialog/edit-pet-mat-dialog.component';
 
 @Component({
   selector: 'app-pet-list',
@@ -109,7 +107,6 @@ export class PetListComponent implements OnInit {
     modal.classList.add('open');
   }
 
-  // ! De IMPLEMENTAT
   confirmDelete() {
     // debugger;
     const backdrop = document.querySelector('.backdrop') as HTMLElement;

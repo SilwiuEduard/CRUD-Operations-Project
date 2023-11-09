@@ -4,8 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 
 import { PetService } from './pet.service';
-import { PetModel } from './pet.model';
-import { PetInterface } from '../shared/pet.interface';
+import { PetInterface } from './pet.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {

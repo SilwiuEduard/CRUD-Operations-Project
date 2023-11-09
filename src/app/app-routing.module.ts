@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // import { AppComponent } from './app.component';
-import { PetListComponent } from './pet-list/pet-list.component';
-import { PetDetailsComponent } from './pet-details/pet-details.component';
-import { AddPetComponent } from './add-pet/add-pet.component';
-import { EditPetComponent } from './edit-pet/edit-pet.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { AddPetReactiveComponent } from './add-pet-reactive/add-pet-reactive.component';
-import { EditPetMatDialogComponent } from './edit-pet-mat-dialog/edit-pet-mat-dialog.component';
+import { HomePageComponent } from '../app/views/home-page/home-page.component';
+import { PetListComponent } from '../app/views/pet-list/pet-list.component';
+import { PetDetailsComponent } from '../app/components/pet-details/pet-details.component';
+import { AddPetComponent } from '../app/views/add-pet/add-pet.component';
+import { AddPetReactiveComponent } from '../app/views/add-pet-reactive/add-pet-reactive.component';
+import { EditPetComponent } from '../app/components/edit-pet/edit-pet.component'; // before deployment to delete
+import { EditPetMatDialogComponent } from '../app/components/edit-pet-mat-dialog/edit-pet-mat-dialog.component';
 // import { PetsResolverService } from './shared/pets-resolver.service';
 
 const appRoutes: Routes = [

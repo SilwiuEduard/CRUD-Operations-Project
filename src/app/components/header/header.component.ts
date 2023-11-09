@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataStorageService } from '../shared/dataStorage.service';
+import { DataStorageService } from '../../core/dataStorage.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,6 +20,5 @@ export class HeaderComponent {
   redirectTo() {
     this.router.navigate(['/']);
     window.scrollTo(0, 0);
-    // routerLink = '/';
   }
 }

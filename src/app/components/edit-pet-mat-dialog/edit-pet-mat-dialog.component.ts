@@ -1,27 +1,15 @@
-import {
-  Component,
-  ElementRef,
-  Inject,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { PetInterface } from '../shared/pet.interface';
-import { DataStorageService } from '../shared/dataStorage.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { PetInterface } from '../../core/pet.interface';
+import { DataStorageService } from '../../core/dataStorage.service';
 
 @Component({
   selector: 'app-edit-pet-mat-dialog',
   templateUrl: './edit-pet-mat-dialog.component.html',
   styleUrls: ['./edit-pet-mat-dialog.component.css'],
 })
-export class EditPetMatDialogComponent implements OnInit {
+export class EditPetMatDialogComponent {
   petFormEdit: FormGroup;
   petEditArray: any;
   addPetEditValues: any = {};
@@ -31,7 +19,6 @@ export class EditPetMatDialogComponent implements OnInit {
   @ViewChild('saveButton', { static: true }) saveButton: ElementRef;
 
   constructor(
-    private router: Router,
     private dataStorageService: DataStorageService,
     private fb: FormBuilder,
     private matDialogRef: MatDialogRef<EditPetMatDialogComponent>,
@@ -64,8 +51,6 @@ export class EditPetMatDialogComponent implements OnInit {
 
     // console.log('log: petFormEdit', this.petFormEdit);
   }
-
-  ngOnInit() {}
 
   onCategorySelect() {
     const categoryName = this.petFormEdit.get('category').get('name').value;

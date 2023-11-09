@@ -6,7 +6,7 @@ import {
   FormArray,
   FormBuilder,
 } from '@angular/forms';
-import { DataStorageService } from 'src/app/shared/dataStorage.service';
+import { DataStorageService } from '../../core/dataStorage.service';
 import { Router } from '@angular/router';
 
 @Component({

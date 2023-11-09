@@ -8,10 +8,9 @@ import {
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import { PetModel } from '../shared/pet.model';
-import { PetService } from '../shared/pet.service';
-import { DataStorageService } from '../shared/dataStorage.service';
+
+import { PetService } from '../../core/pet.service';
+import { DataStorageService } from '../../core/dataStorage.service';
 
 @Component({
   selector: 'app-edit-pet',
