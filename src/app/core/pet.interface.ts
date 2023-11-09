@@ -2,17 +2,17 @@ export interface PetInterface {
   id: any;
   category: {
     id: any;
-    name: string;
+    name: String;
   };
   name: string;
-  photoUrls: [string];
+  photoUrls: [String];
   tags: [
     {
       id: any;
-      name: string;
+      name: String;
     }
   ];
-  status: string;
+  status: String;
 }
 // === FIRST VERSION of Interface ===
 // export interface PetInterface {

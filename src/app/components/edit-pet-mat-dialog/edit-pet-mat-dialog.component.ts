@@ -1,8 +1,13 @@
 import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  Validators,
+  FormGroup,
+  FormControl,
+} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { PetInterface } from '../../core/pet.interface';
 import { DataStorageService } from '../../core/dataStorage.service';
+import { PetInterface } from '../../core/pet.interface';
 
 @Component({
   selector: 'app-edit-pet-mat-dialog',
@@ -10,71 +15,71 @@ import { DataStorageService } from '../../core/dataStorage.service';
   styleUrls: ['./edit-pet-mat-dialog.component.css'],
 })
 export class EditPetMatDialogComponent {
-  petFormEdit: FormGroup;
-  petEditArray: any;
-  addPetEditValues: any = {};
-
-  defaultOptionForCategory: any; // for category mat-option
-
   @ViewChild('saveButton', { static: true }) saveButton: ElementRef;
+
+  petFormEdit: FormGroup;
+  petEditArray!: PetInterface;
+  category: any = null;
+
+  categories = [
+    { id: 0, name: 'Not selected' },
+    { id: 1, name: 'Dog' },
+    { id: 2, name: 'Cat' },
+    { id: 3, name: 'Bird' },
+    { id: 4, name: 'Fish' },
+  ];
+
+  statuses = [
+    { id: 'available', name: 'Available' },
+    { id: 'pending', name: 'Pending' },
+    { id: 'sold', name: 'Sold' },
+  ];
 
   constructor(
     private dataStorageService: DataStorageService,
-    private fb: FormBuilder,
     private matDialogRef: MatDialogRef<EditPetMatDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) pet: any
+    @Inject(MAT_DIALOG_DATA) data: any //to change any with PetInterface at the end and test the functionality
   ) {
-    this.petEditArray = pet;
-    // this.defaultOptionForCategory = pet.category.id.toString();
-    console.log(this.defaultOptionForCategory, 'log defaultOptionForCategory');
-
-    // debugger;
-    console.log('log petEditArray: ', this.petEditArray);
-    console.log('log pet: ', pet);
-
-    this.petFormEdit = fb.group({
-      id: [pet.id],
-      category: this.fb.group({
-        id: [pet.category.id],
-        name: [pet.category.name, Validators.required],
-      }),
-      name: [pet.name, [Validators.required, Validators.pattern('[a-zA-Z].*')]],
-      photoUrls: [pet.photoUrls],
-      tags: this.fb.array([
-        this.fb.group({
-          id: this.fb.control(pet.tags.id),
-          name: this.fb.control(pet.tags.name),
-        }),
-      ]),
-      status: [pet.status, Validators.required],
-    });
-
-    // console.log('log: petFormEdit', this.petFormEdit);
+    this.buildForm();
+    this.getPetById(data);
   }
 
-  onCategorySelect() {
-    const categoryName = this.petFormEdit.get('category').get('name').value;
+  buildForm(): void {
+    this.petFormEdit = new FormGroup({
+      id: new FormControl([null, Validators.required]),
+      category: new FormControl({
+        id: new FormControl(null),
+        name: new FormControl([null]),
+      }),
+      name: new FormControl([
+        null,
+        [Validators.required, Validators.pattern('[a-zA-Z].*')],
+      ]), // ! not FormGroup?
+      photoUrls: new FormControl([null]), // ! not FormArray?
+      tags: new FormControl([
+        // ! not FormArray?
+        {
+          id: new FormControl(null),
+          name: new FormControl(null),
+        },
+      ]),
+      status: new FormControl([null, Validators.required]),
+    });
+  }
 
-    switch (categoryName) {
-      case 'Not selected':
-        this.petFormEdit.get('category').get('id').setValue(1);
-        break;
-      case 'Dog':
-        this.petFormEdit.get('category').get('id').setValue(2);
-        break;
-      case 'Cat':
-        this.petFormEdit.get('category').get('id').setValue(3);
-        break;
-      case 'Bird':
-        this.petFormEdit.get('category').get('id').setValue(4);
-        break;
-      case 'Fish':
-        this.petFormEdit.get('category').get('id').setValue(5);
-        break;
-      default:
-        this.petFormEdit.get('category').get('name').value;
-        break;
-    }
+  getPetById(id: string): void {
+    // ! not id: number?
+    this.dataStorageService.getPetById(id).subscribe({
+      next: (res: PetInterface) => {
+        this.petEditArray = res;
+        this.petFormEdit.patchValue(res);
+        this.category = res.category;
+      },
+      error: (err: any) => {
+        alert('Pet not found');
+        this.close();
+      },
+    });
   }
 
   close(): void {
@@ -82,53 +87,20 @@ export class EditPetMatDialogComponent {
   }
 
   save() {
-    // debugger;
-    this.addPetEditValues.id = this.petFormEdit.get('id').value;
-    this.addPetEditValues.category = {
-      id: this.petFormEdit.get('category.id').value,
-      name: this.petFormEdit.get('category.name').value,
-    };
-    this.addPetEditValues.name = this.petFormEdit.get('name').value;
-    this.addPetEditValues.photoUrls = this.petFormEdit.get('photoUrls').value;
-    this.addPetEditValues.tags = this.petFormEdit.get('tags').value;
-    this.addPetEditValues.status = this.petFormEdit.get('status').value;
+    let data: any = this.petFormEdit.value; // ! data: PetInterface ?
+    this.categories.forEach((item) => {
+      if (item.id === data.category) {
+        data.category = item;
+      }
+    });
 
-    if (
-      this.addPetEditValues.name !== '' &&
-      this.addPetEditValues.status !== ''
-    ) {
-      this.dataStorageService.editPet(this.addPetEditValues);
-      this.addPetEditValues = {};
-    }
-
-    console.log(this.petFormEdit, 'console.log on submitForm');
-    this.dataStorageService.fetchPets('all');
-    this.matDialogRef.close();
+    this.dataStorageService.updatePet(data).subscribe({
+      complete: () => {
+        alert('Pet uploaded');
+        this.matDialogRef.close();
+      },
+    });
   }
-
-  // save() {
-  //   if (this.petFormEdit.valid) {
-  //     this.dataStorageService.editPet(this.petFormEdit.value).subscribe(
-  //       () => {
-  //         // Success
-  //         this.matDialogRef.close();
-  //       },
-  //       (error) => {
-  //         // Error
-  //         console.log(error);
-  //       }
-  //     );
-  //   } else {
-  //     console.log('Invalid form');
-  //   }
-  // }
-
-  // updateDialogTitle(): void {
-  //   const nameControl = this.petFormEdit.get('name');
-  //   if (nameControl) {
-  //     this.petEditArray.name = nameControl.value;
-  //   }
-  // }
 
   getValues() {
     // console.log('console.log petFormEdit: ', this.petFormEdit);

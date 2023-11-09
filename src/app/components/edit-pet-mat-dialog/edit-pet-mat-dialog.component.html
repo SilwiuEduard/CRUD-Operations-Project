@@ -1,13 +1,9 @@
-<div class="overall__container">
+<div class="overall__container" *ngIf="category">
   <mat-dialog-content [formGroup]="petFormEdit" autocomplete="off">
     <h3>Edit Pet</h3>
 
     <mat-dialog-actions>
-      <button class="btn btn-danger" (click)="close()">Back</button> |
-      <button class="btn btn-warning" #saveButton (click)="save()">Save</button>
-
-      |
-      <button class="btn btn-success" (click)="getValues()" type="button">
+      <button class="btn btn-warning" (click)="getValues()" type="button">
         getValues
       </button>
     </mat-dialog-actions>
@@ -24,27 +20,33 @@
     </mat-form-field>
 
     <h4>Category</h4>
-    <mat-form-field formGroupName="category">
+    <mat-form-field>
       <mat-select
+        formControlName="category"
         placeholder="Select category"
-        formControlName="name"
-        (change)="onCategorySelect()"
+        [(ngModel)]="category.id"
       >
-        <mat-option value="Not selected">Not selected</mat-option>
-        <mat-option value="Dog">Dog</mat-option>
-        <mat-option value="Cat">Cat</mat-option>
-        <mat-option value="Bird">Bird</mat-option>
-        <mat-option value="Fish">Fish</mat-option>
+        <mat-option
+          selected="true"
+          *ngFor="let pet of categories"
+          [value]="pet.id"
+          >{{ pet.name }}</mat-option
+        >
       </mat-select>
     </mat-form-field>
 
     <h4>Status</h4>
     <mat-form-field>
       <mat-select formControlName="status">
-        <mat-option value="available"> Available</mat-option>
-        <mat-option value="pending"> Pending</mat-option>
-        <mat-option value="sold"> Sold</mat-option>
+        <mat-option *ngFor="let status of statuses" [value]="status.id">
+          {{ status.name }}</mat-option
+        >
       </mat-select>
     </mat-form-field>
   </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="btn btn-danger" (click)="close()">Back</button>
+    <button class="btn btn-success" #saveButton (click)="save()">Save</button>
+  </mat-dialog-actions>
 </div>
