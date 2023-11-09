@@ -48,13 +48,14 @@ export class EditPetMatDialogComponent {
     this.petFormEdit = new FormGroup({
       id: new FormControl([null, Validators.required]),
       category: new FormControl({
+        // ! not FormGroup?
         id: new FormControl(null),
         name: new FormControl([null]),
       }),
       name: new FormControl([
         null,
         [Validators.required, Validators.pattern('[a-zA-Z].*')],
-      ]), // ! not FormGroup?
+      ]),
       photoUrls: new FormControl([null]), // ! not FormArray?
       tags: new FormControl([
         // ! not FormArray?
