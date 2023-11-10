@@ -16,7 +16,7 @@ export class PetListComponent implements OnInit {
   selectedPetIndex: number = -1; // because in HTML index value is i + 1
   filteredPets: any[] = [];
   selectedPetData: any = null;
-  messageRemove = false;
+  messageSuccess = false;
   id: number; // prop to store index
   // fetchPetsLoading = false; //loading animation
   error = null;
@@ -183,22 +183,27 @@ export class PetListComponent implements OnInit {
 
     if (this.selectedPetIndex > -1) {
       this.dataStorageService.deletePet(this.selectedPetData.id).subscribe({
-        complete: () => {
+        next: () => {
+          // Delete element from local list after successfully delete
           this.apiPets.splice(this.selectedPetIndex, 1);
+          // Reset index and data
           this.selectedPetIndex = -1;
           this.selectedPetData = null;
-          this.messageRemove = true;
+          // Show succes message
+          this.messageSuccess = true;
           setTimeout(() => {
-            this.messageRemove = false;
+            this.messageSuccess = false;
             this.resetStatus();
             backdrop.classList.remove('open');
             modal.classList.remove('open');
           }, 1000);
         },
+        error: (err) => {
+          this.error = err.message;
+          console.error('Error deleting pet: ', err);
+        },
       });
     }
-
-    // this.getAllPets();
   }
 
   cancelDelete() {
@@ -214,5 +219,10 @@ export class PetListComponent implements OnInit {
     ) as HTMLSelectElement;
     selectElement.value = 'all';
     this.selectStatus({ target: selectElement });
+  }
+
+  onHandleError() {
+    this.cancelDelete();
+    this.error = null;
   }
 }

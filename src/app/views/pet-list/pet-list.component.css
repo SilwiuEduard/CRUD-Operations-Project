@@ -151,6 +151,7 @@ th:hover {
   top: 50%;
   left: 30%;
   width: 35%;
+  min-width: 480px;
   background: #f7f2ee;
   padding: 1rem;
   border: 1px solid #ccc;
@@ -167,4 +168,9 @@ th:hover {
 
 .open {
   display: block !important;
+}
+
+.alert-success,
+.alert-danger {
+  margin-top: 1rem;
 }

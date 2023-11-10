@@ -20,6 +20,8 @@ export class EditPetMatDialogComponent {
   petFormEdit: FormGroup;
   petEditArray!: PetInterface;
   category: any = null;
+  messageSuccess = false;
+  error = null;
 
   categories = [
     { id: 0, name: 'Not selected' },
@@ -91,13 +93,27 @@ export class EditPetMatDialogComponent {
         data.category = item;
       }
     });
-
+    this.messageSuccess = true;
     this.dataStorageService.updatePet(data).subscribe({
-      complete: () => {
-        alert('Pet uploaded');
-        this.matDialogRef.close();
+      next: () => {
+        setTimeout(() => {
+          this.messageSuccess = false;
+          this.matDialogRef.close();
+          // alert('Pet uploaded');
+        }, 1000);
+      },
+
+      error: (err: any) => {
+        this.error = err.message;
+        console.error('Error deleting pet: ', err);
+        // alert('Pet not found');
+        this.close();
       },
     });
+  }
+
+  onHandleError() {
+    this.error = null;
   }
 
   getValues() {
