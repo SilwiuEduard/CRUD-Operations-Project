@@ -15,6 +15,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-pet-reactive.component.css'],
 })
 export class AddPetReactiveComponent {
+  addPetValues: any = {};
+  msgSuccess: boolean = false;
+  msgWarning: boolean = false;
+  error = null;
+
   petForm = this.fb.group({
     id: [''],
     category: this.fb.group({
@@ -49,11 +54,6 @@ export class AddPetReactiveComponent {
     return this.petForm.get('status');
   }
 
-  addPetValues: any = {};
-
-  msgSuccess: boolean = false;
-  msgWarning: boolean = false;
-
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -69,14 +69,7 @@ export class AddPetReactiveComponent {
       }),
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z].*')]],
       photoUrls: this.fb.array([]),
-      // this.fb.array([this.fb.control(null)]),
       tags: this.fb.array([]),
-      // this.fb.array([
-      //   this.fb.group({
-      //     id: this.fb.control(''),
-      //     name: this.fb.control(''),
-      //   }),
-      // ]),
       status: ['available', Validators.required],
     });
   }
@@ -130,13 +123,6 @@ export class AddPetReactiveComponent {
       this.msgSuccess = false;
     }
 
-    if (this.msgSuccess === true) {
-      setTimeout(() => {
-        this.router.navigate(['/list']);
-        window.scrollTo(0, 0);
-      }, 1000);
-    }
-    // debugger;
     this.addPetValues.id = this.petForm.get('id').value;
     this.addPetValues.category = {
       id: this.petForm.get('category.id').value,
@@ -148,7 +134,20 @@ export class AddPetReactiveComponent {
     this.addPetValues.status = this.petForm.get('status').value;
 
     if (this.addPetValues.name !== '' && this.addPetValues.status !== '') {
-      this.dataStorageService.addPet(this.addPetValues);
+      this.dataStorageService.addPet(this.addPetValues).subscribe({
+        next: () => {
+          if (this.msgSuccess === true) {
+            setTimeout(() => {
+              this.router.navigate(['/list']);
+              window.scrollTo(0, 0);
+            }, 1000);
+          }
+        },
+        error: (err) => {
+          this.error = err.message;
+          console.error('Error deleting pet: ', err);
+        },
+      });
       this.addPetValues = {};
     }
 
@@ -183,5 +182,9 @@ export class AddPetReactiveComponent {
 
   onCancel() {
     this.petForm.reset();
+  }
+
+  onHandleError() {
+    this.error = null;
   }
 }

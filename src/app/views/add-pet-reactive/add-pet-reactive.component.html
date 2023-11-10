@@ -20,6 +20,7 @@
           (ngSubmit)="submitForm(); petForm.reset()"
           style="margin-top: 50px"
           autocomplete="off"
+          *ngIf="!error"
         >
           <div class="form-group">
             <label class="form-label">Pet Id*</label>
@@ -222,7 +223,18 @@
           <button class="btn btn-danger" type="button" (click)="onCancel()">
             Reset
           </button>
+
+          <br />
+          <br />
         </form>
+
+        <div *ngIf="error">
+          An Error Occurred!
+          <div class="alert alert-danger">
+            <p>{{ error }}</p>
+          </div>
+          <button class="btn btn-danger" (click)="onHandleError()">Ok</button>
+        </div>
       </div>
     </div>
   </div>
