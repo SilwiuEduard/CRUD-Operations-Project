@@ -19,6 +19,10 @@ html {
   justify-content: space-between;
 }
 
+.main-header a {
+  cursor: pointer;
+}
+
 .main-header__brand img {
   height: 10rem;
   vertical-align: middle;

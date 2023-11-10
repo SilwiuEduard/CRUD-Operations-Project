@@ -190,13 +190,15 @@ export class PetListComponent implements OnInit {
           this.messageRemove = true;
           setTimeout(() => {
             this.messageRemove = false;
+            this.resetStatus();
             backdrop.classList.remove('open');
             modal.classList.remove('open');
           }, 1000);
         },
       });
     }
-    this.getAllPets();
+
+    // this.getAllPets();
   }
 
   cancelDelete() {
@@ -204,5 +206,13 @@ export class PetListComponent implements OnInit {
     const modal = document.querySelector('.myModal') as HTMLElement;
     backdrop.classList.remove('open');
     modal.classList.remove('open');
+  }
+
+  resetStatus() {
+    const selectElement = document.getElementById(
+      'statusSelect'
+    ) as HTMLSelectElement;
+    selectElement.value = 'all';
+    this.selectStatus({ target: selectElement });
   }
 }
