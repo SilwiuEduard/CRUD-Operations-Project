@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DataStorageService } from '../../core/dataStorage.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,14 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  constructor(
-    private dataStorageService: DataStorageService,
-    private router: Router
-  ) {}
-
-  // onFetchData() {
-  //   this.dataStorageService.fetchPets();
-  // }
+  constructor(private router: Router) {}
 
   redirectTo() {
     this.router.navigate(['/']);

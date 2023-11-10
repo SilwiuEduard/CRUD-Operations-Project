@@ -1,3 +1,9 @@
+<div class="loader" *ngIf="!apiPets">
+  <div class="spinner">
+    <mat-spinner [color]="'accent'"></mat-spinner>
+  </div>
+</div>
+
 <div class="background_img" style="margin-top: -240px">
   <img src="../../../assets/home_icon2.jpeg" />
 </div>
@@ -7,15 +13,15 @@
     <h2 *ngIf="!error">Pet Store Inventory</h2>
     <div>
       <span
-        ><a routerLink="/add"
-          ><img
-            src="../../assets/add-new-pet_TD.png"
-            style="cursor: pointer" /></a></span
-      >-
-      <span
         ><a routerLink="/addR"
           ><img
             src="../../assets/add-new-pet_R.png"
+            style="cursor: pointer" /></a></span
+      >-
+      <span
+        ><a routerLink="/add"
+          ><img
+            src="../../assets/add-new-pet_TD.png"
             style="cursor: pointer" /></a
       ></span>
     </div>
@@ -35,7 +41,7 @@
           <th>Name</th>
           <th>
             Status
-            <select id="statusSelect">
+            <select (change)="selectStatus($event)">
               <option value="all">All</option>
               <option value="available">Available</option>
               <option value="pending">Pending</option>
@@ -45,23 +51,18 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <!-- <tbody *ngIf="!fetchPetsLoading"> -->
-      <tbody>
+
+      <tbody *ngIf="apiPets">
         <tr *ngFor="let pet of apiPets; let i = index">
           <td>{{ i + 1 }}</td>
           <td>{{ pet.name }}</td>
           <td>
-            <span
-              class="status"
-              [ngClass]="{
-                available: pet.status === 'available',
-                pending: pet.status === 'pending',
-                sold: pet.status === 'sold'
-              }"
-              >{{ pet.status }}</span
+            <span class="status" [ngClass]="statusCSSclass(pet)">
+              {{ pet.status }}</span
             >
           </td>
           <td class="btn-group">
+            <!-- VIEW PET DETAILS -->
             <span>
               <a (click)="onView(i)">
                 <img
@@ -73,7 +74,7 @@
             <span>
               <a
                 ><img
-                  (click)="editPetDialog(pet)"
+                  (click)="onEditPetDialog(pet.id)"
                   src="../../../assets/edit.png"
                   style="cursor: pointer" /></a
             ></span>

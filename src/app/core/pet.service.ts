@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class PetService {
-  singlePetInfo: any[] = []; // this.PetServiceV2.singlePetInfo = [];: Aceasta golește un vector sau o listă numită singlePetInfo în serviciul PetServiceV2. Golirea acestei liste poate fi efectuată pentru a face loc pentru noile detalii ale elementului selectat.
-
+  singlePetInfo: any[] = [];
   selectedPetIndex: number = -1;
-
   infosPet: any[] = [];
   editList: any[] = [];
   id: number;

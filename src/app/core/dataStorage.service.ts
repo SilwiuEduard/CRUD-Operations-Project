@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PetService } from './pet.service';
 import { PetInterface } from './pet.interface';
 
 // ### METHODS ###
@@ -21,7 +20,7 @@ export class DataStorageService {
 
   // pets: PetInterface[] = []; // later to change any
 
-  constructor(private http: HttpClient, private petService: PetService) {}
+  constructor(private http: HttpClient) {}
 
   getAvailablePets(): Observable<any> {
     return this.http.get<any>(this.apiPetStatus + 'available');

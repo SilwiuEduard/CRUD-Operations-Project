@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DataStorageService } from '../../core/dataStorage.service';
 import { PetService } from '../../core/pet.service';
 import { PetInterface } from '../../core/pet.interface';
-import { DataStorageService } from '../../core/dataStorage.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditPetMatDialogComponent } from '../../components/edit-pet-mat-dialog/edit-pet-mat-dialog.component';
 
 @Component({
@@ -12,8 +12,9 @@ import { EditPetMatDialogComponent } from '../../components/edit-pet-mat-dialog/
   styleUrls: ['./pet-list.component.css'],
 })
 export class PetListComponent implements OnInit {
-  apiPets: PetInterface[] = [];
+  apiPets: Array<any> = null;
   selectedPetIndex: number = -1; // because in HTML index value is i + 1
+  filteredPets: any[] = [];
   selectedPetData: any = null;
   messageRemove = false;
   id: number; // prop to store index
@@ -29,72 +30,141 @@ export class PetListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.fetchPetsLoading = true;
-    this.apiPets = this.dataStorageService.fetchPets('all');
+    this.getAllPets();
     this.id = this.route.snapshot.params['id'];
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
     });
-    // this.fetchPetsLoading = false;
   }
 
-  ngAfterViewInit() {
-    const selectElement = document.getElementById(
-      'statusSelect'
-    ) as HTMLSelectElement;
-    selectElement.addEventListener('change', () => {
-      this.onSelectStatus();
+  getAllPets(): void {
+    this.apiPets = null;
+    this.dataStorageService.getAvailablePets().subscribe({
+      next: (available: any) => {
+        this.apiPets = [];
+        available.forEach((pet) => {
+          this.apiPets.push(pet);
+        });
+        console.log('available pets: ', available);
+      },
+      complete: () => {
+        this.dataStorageService.getPendingPets().subscribe({
+          next: (pending: any) => {
+            pending.forEach((pet) => {
+              this.apiPets.push(pet);
+            });
+            console.log('pending pets: ', pending);
+          },
+          complete: () => {
+            this.dataStorageService.getSoldPets().subscribe({
+              next: (sold: any) => {
+                sold.forEach((pet) => {
+                  this.apiPets.push(pet);
+                });
+                console.log('sold pets: ', sold);
+              },
+            });
+          },
+        });
+      },
     });
   }
 
-  onSelectStatus() {
-    const selectElement = document.getElementById(
-      'statusSelect'
-    ) as HTMLSelectElement;
-    const selectedValue = selectElement.value;
-    this.apiPets = this.dataStorageService.fetchPets(selectedValue);
+  getAvailablePets(): void {
+    this.apiPets = null;
+    this.dataStorageService.getAvailablePets().subscribe({
+      next: (available: any) => {
+        this.apiPets = [];
+        available.forEach((pet) => {
+          this.apiPets.push(pet);
+        });
+      },
+    });
   }
 
-  // petClasses() {
-  // ! DE PUS METODA LA NGCLASS SI DE REFACUT METODA AICI
-  //   if (this.pet && this.pet.status) {
-  //     return {
-  //       available: this.pet.status === 'available',
-  //       pending: this.pet.status === 'pending',
-  //       sold: this.pet.status === 'sold',
-  //     };
-  //   }
-  //   return {};
-  // }
+  getPendingPets(): void {
+    this.apiPets = null;
+    this.dataStorageService.getPendingPets().subscribe({
+      next: (pending: any) => {
+        this.apiPets = [];
+        pending.forEach((pet) => {
+          this.apiPets.push(pet);
+        });
+      },
+    });
+  }
+
+  getSoldPets(): void {
+    this.apiPets = null;
+    this.dataStorageService.getSoldPets().subscribe({
+      next: (sold: any) => {
+        this.apiPets = [];
+        sold.forEach((pet) => {
+          this.apiPets.push(pet);
+        });
+      },
+    });
+  }
+
+  selectStatus($event): void {
+    const target: string = $event.target.value;
+    console.log('console log target: ', target);
+
+    if (target === 'all') this.getAllPets();
+    if (target === 'available') this.getAvailablePets();
+    if (target === 'pending') this.getPendingPets();
+    if (target === 'sold') this.getSoldPets();
+  }
+
+  statusCSSclass(pet): any {
+    return {
+      available: this.petAvailable(pet),
+      pending: this.petPending(pet),
+      sold: this.petSold(pet),
+    };
+  }
+
+  petAvailable(pet: any): boolean {
+    return pet.status === 'available';
+  }
+
+  petPending(pet: any): boolean {
+    return pet.status === 'pending';
+  }
+
+  petSold(pet: any): boolean {
+    return pet.status === 'sold';
+  }
 
   onView(petIndex: number) {
-    // debugger;
     this.selectedPetIndex = petIndex;
     this.selectedPetData = this.apiPets[petIndex];
-
     if (this.selectedPetIndex > -1) {
       this.petService.singlePetInfo = [];
-
       this.petService.addPetInfo(this.selectedPetData);
-
-      console.log();
       this.id = this.selectedPetData.id;
-
       this.router.navigate(['/view', this.id]);
     }
   }
 
-  editPetDialog(pet: PetInterface) {
+  onEditPetDialog(id: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.data = id;
 
-    dialogConfig.data = pet;
+    const dialogRef = this.matDialog
+      .open(EditPetMatDialogComponent, dialogConfig)
+      .afterClosed();
 
-    const dialogRef = this.matDialog.open(
-      EditPetMatDialogComponent,
-      dialogConfig
-    );
+    dialogRef
+      .subscribe({
+        next: () => {
+          this.getAllPets();
+        },
+      })
+      .add()
+      .unsubscribe();
   }
 
   onDelete(petIndex: number) {
@@ -108,24 +178,25 @@ export class PetListComponent implements OnInit {
   }
 
   confirmDelete() {
-    // debugger;
     const backdrop = document.querySelector('.backdrop') as HTMLElement;
     const modal = document.querySelector('.myModal') as HTMLElement;
 
     if (this.selectedPetIndex > -1) {
-      this.dataStorageService.deletePet(this.selectedPetData.id);
-      this.apiPets.splice(this.selectedPetIndex, 1);
-      this.selectedPetIndex = -1;
-      this.selectedPetData = null;
-      this.messageRemove = true;
-      setTimeout(() => {
-        this.messageRemove = false;
-        backdrop.classList.remove('open');
-        modal.classList.remove('open');
-      }, 1000);
+      this.dataStorageService.deletePet(this.selectedPetData.id).subscribe({
+        complete: () => {
+          this.apiPets.splice(this.selectedPetIndex, 1);
+          this.selectedPetIndex = -1;
+          this.selectedPetData = null;
+          this.messageRemove = true;
+          setTimeout(() => {
+            this.messageRemove = false;
+            backdrop.classList.remove('open');
+            modal.classList.remove('open');
+          }, 1000);
+        },
+      });
     }
-
-    this.apiPets = this.dataStorageService.fetchPets('all');
+    this.getAllPets();
   }
 
   cancelDelete() {
@@ -134,8 +205,4 @@ export class PetListComponent implements OnInit {
     backdrop.classList.remove('open');
     modal.classList.remove('open');
   }
-
-  // onHandleError() {
-  //   this.error = null;
-  // }
 }

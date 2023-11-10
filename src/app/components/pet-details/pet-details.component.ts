@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-
-import { PetService } from '../../core/pet.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataStorageService } from '../../core/dataStorage.service';
+import { PetService } from '../../core/pet.service';
 
 @Component({
   selector: 'app-pet-details',
@@ -21,20 +20,24 @@ export class PetDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.petService.petId = Number(params['id']);
+      let id: any = Number(params['id']);
+      this.petService.petId = id;
+      this.getPetById(id);
     });
-    this.petArray = this.dataStorageService.getPetById(this.petService.petId);
-
-    // Filter out empty photoUrls and empty strings
-    this.petArray.forEach((pet) => {
-      if (pet.photoUrls) {
-        pet.photoUrls = pet.photoUrls.filter(
-          (url: string) => url.trim() !== ''
-        );
-      }
+  }
+  getPetById(id: any): void {
+    this.dataStorageService.getPetById(id).subscribe({
+      next: (res: any) => {
+        this.petArray = res;
+        this.petArray.forEach((pet) => {
+          if (pet.photoUrls) {
+            pet.photoUrls = pet.photoUrls.filter(
+              (url: string) => url.trim() !== ''
+            );
+          }
+        });
+      },
     });
-
-    console.log(this.petArray, 'log petArray');
   }
 
   isEmptyPhotoArray(photoUrls: string[]): boolean {

@@ -15,7 +15,7 @@ import { PetInterface } from '../../core/pet.interface';
   styleUrls: ['./edit-pet-mat-dialog.component.css'],
 })
 export class EditPetMatDialogComponent {
-  @ViewChild('saveButton', { static: true }) saveButton: ElementRef;
+  // @ViewChild('saveButton', { static: true }) saveButton: ElementRef;
 
   petFormEdit: FormGroup;
   petEditArray!: PetInterface;
@@ -48,7 +48,6 @@ export class EditPetMatDialogComponent {
     this.petFormEdit = new FormGroup({
       id: new FormControl([null, Validators.required]),
       category: new FormControl({
-        // ! not FormGroup?
         id: new FormControl(null),
         name: new FormControl([null]),
       }),
@@ -56,9 +55,8 @@ export class EditPetMatDialogComponent {
         null,
         [Validators.required, Validators.pattern('[a-zA-Z].*')],
       ]),
-      photoUrls: new FormControl([null]), // ! not FormArray?
+      photoUrls: new FormControl([null]),
       tags: new FormControl([
-        // ! not FormArray?
         {
           id: new FormControl(null),
           name: new FormControl(null),
@@ -69,7 +67,6 @@ export class EditPetMatDialogComponent {
   }
 
   getPetById(id: string): void {
-    // ! not id: number?
     this.dataStorageService.getPetById(id).subscribe({
       next: (res: PetInterface) => {
         this.petEditArray = res;
@@ -88,7 +85,7 @@ export class EditPetMatDialogComponent {
   }
 
   save() {
-    let data: any = this.petFormEdit.value; // ! data: PetInterface ?
+    let data: any = this.petFormEdit.value;
     this.categories.forEach((item) => {
       if (item.id === data.category) {
         data.category = item;

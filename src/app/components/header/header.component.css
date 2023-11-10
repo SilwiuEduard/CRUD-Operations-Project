@@ -22,7 +22,6 @@ html {
 .main-header__brand img {
   height: 10rem;
   vertical-align: middle;
-  /* width: 100%; */
 }
 
 .main-nav {
@@ -35,7 +34,6 @@ html {
   list-style: none;
   display: flex;
   font-size: 1.8rem;
-  font-family: young serif;
 }
 
 .main-nav__item {
