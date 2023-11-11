@@ -10,6 +10,7 @@ import { PetService } from '../../core/pet.service';
 })
 export class PetDetailsComponent implements OnInit {
   petArray: any[] = [];
+  error = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,17 +26,21 @@ export class PetDetailsComponent implements OnInit {
       this.getPetById(id);
     });
   }
+
   getPetById(id: any): void {
     this.dataStorageService.getPetById(id).subscribe({
-      next: (res: any) => {
-        this.petArray = res;
-        this.petArray.forEach((pet) => {
-          if (pet.photoUrls) {
-            pet.photoUrls = pet.photoUrls.filter(
-              (url: string) => url.trim() !== ''
-            );
-          }
-        });
+      next: (responsePet: any) => {
+        this.petArray = [responsePet];
+
+        // if (responsePet.photoUrls) {
+        //   responsePet.photoUrls = responsePet.photoUrls.filter(
+        //     (url: string) => url.trim() !== ''
+        //   );
+        // }
+      },
+      error: (err) => {
+        this.error = err.message;
+        console.error('Error fetching pet details:', err);
       },
     });
   }
@@ -60,5 +65,10 @@ export class PetDetailsComponent implements OnInit {
   backToList() {
     this.router.navigate(['/list']);
     window.scrollTo(0, 0);
+  }
+
+  onHandleError() {
+    this.error = null;
+    this.backToList();
   }
 }

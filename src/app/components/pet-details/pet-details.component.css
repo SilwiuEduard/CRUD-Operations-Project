@@ -49,8 +49,7 @@
   font-size: 14px;
 }
 
-/* .text-container h3 {
-  margin: 20px 0px 10px 0px;
-  color: #04bcff;
-  font-size: 18px;
-} */
+.alert-danger > img {
+  width: 100px;
+  height: 100px;
+}
