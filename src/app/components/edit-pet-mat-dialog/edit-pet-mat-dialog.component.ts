@@ -1,10 +1,5 @@
-import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
-import {
-  FormBuilder,
-  Validators,
-  FormGroup,
-  FormControl,
-} from '@angular/forms';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DataStorageService } from '../../core/dataStorage.service';
 import { PetInterface } from '../../core/pet.interface';
@@ -15,7 +10,7 @@ import { PetInterface } from '../../core/pet.interface';
   styleUrls: ['./edit-pet-mat-dialog.component.css'],
 })
 export class EditPetMatDialogComponent {
-  // @ViewChild('saveButton', { static: true }) saveButton: ElementRef;
+  @Output() onSaveSuccess: EventEmitter<void> = new EventEmitter<void>();
 
   petFormEdit: FormGroup;
   petEditArray!: PetInterface;
@@ -99,6 +94,7 @@ export class EditPetMatDialogComponent {
         setTimeout(() => {
           this.messageSuccess = false;
           this.matDialogRef.close();
+          this.onSaveSuccess.emit();
           // alert('Pet uploaded');
         }, 1000);
       },

@@ -1,4 +1,4 @@
-/* Background IMG */
+/* === Background IMG === */
 span img {
   width: 25px;
   height: 25px;
@@ -18,7 +18,7 @@ span img {
   max-height: 100%;
 }
 
-/* TABLE  */
+/* === TABLE === */
 
 table {
   width: 100%;
@@ -63,7 +63,6 @@ th:hover {
 }
 
 .table__wrapper {
-  /* ! here modifies */
   width: 72%;
   min-width: 500px;
   height: 60vh;
@@ -73,7 +72,6 @@ th:hover {
   border-radius: 0.8rem;
   margin: 250px auto 0;
   overflow: hidden;
-  /* scrollbar-gutter: stable both-edges; */
 }
 
 .table__header {

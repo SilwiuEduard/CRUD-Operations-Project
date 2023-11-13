@@ -47,7 +47,7 @@ import { EditPetMatDialogComponent } from '../app/components/edit-pet-mat-dialog
     MatFormFieldModule,
     MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [PetListComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

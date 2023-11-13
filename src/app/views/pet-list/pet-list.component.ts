@@ -159,8 +159,9 @@ export class PetListComponent implements OnInit {
 
     dialogRef
       .subscribe({
-        next: () => {
-          this.getAllPets();
+        next: (newStatus: string) => {
+          // this.getAllPets();
+          this.resetStatus();
         },
       })
       .add()

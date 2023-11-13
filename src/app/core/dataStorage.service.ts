@@ -16,7 +16,7 @@ export class DataStorageService {
   readonly apiPet = `${this.apiHost}/${this.apiVersion}/pet/`;
   readonly apiPetStatus = `${this.apiPet}findByStatus?status=`;
 
-  pets: any[] = [];
+  // pets: PetInterface[] = [];
 
   // pets: PetInterface[] = []; // later to change any
 
