@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// import { AppComponent } from './app.component';
 import { HomePageComponent } from '../app/views/home-page/home-page.component';
 import { PetListComponent } from '../app/views/pet-list/pet-list.component';
 import { PetDetailsComponent } from '../app/components/pet-details/pet-details.component';

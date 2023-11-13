@@ -3,15 +3,6 @@
     <mat-dialog-content [formGroup]="petFormEdit" autocomplete="off">
       <h3>Edit Pet</h3>
 
-      <!-- * LATER TO DELETE THIS BUTTON -->
-      <!-- <mat-dialog-actions>
-      <button class="btn btn-warning" (click)="getValues()" type="button">
-        getValues
-      </button>
-    </mat-dialog-actions> -->
-
-      <!-- <h2 mat-dialog-title>{{ petEditArray.name }}</h2> -->
-
       <mat-dialog-content>
         <p>ID: {{ petEditArray.id }}</p>
       </mat-dialog-content>
@@ -59,12 +50,12 @@
       </div>
     </div>
 
-    <!-- <div *ngIf="error">
+    <div *ngIf="error">
       An Error Occurred!
       <div class="alert alert-danger">
         <p>{{ error }}</p>
       </div>
       <button class="btn btn-danger" (click)="onHandleError()">Ok</button>
-    </div> -->
+    </div>
   </mat-dialog-content>
 </div>

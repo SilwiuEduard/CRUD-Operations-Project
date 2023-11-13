@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { PetModel } from '../../shared/pet.model';
 import { DataStorageService } from '../../core/dataStorage.service';
@@ -13,12 +13,11 @@ import { DataStorageService } from '../../core/dataStorage.service';
 export class AddPetComponent {
   @ViewChild('formAddRef') submitForm: NgForm;
   defaultStatus = 'available';
-
-  isSubmitted: boolean = false; // pentru fereastra confirmare/eroare dupa submit
+  isSubmitted: boolean = false;
+  error = null;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private dataStorageService: DataStorageService
   ) {}
 
@@ -37,15 +36,22 @@ export class AddPetComponent {
       [{ id: petProps.tagI, name: petProps.tagN }],
       petProps.status
     );
-    this.dataStorageService.addPet(newPet);
+    this.dataStorageService.addPet(newPet).subscribe({
+      next: () => {
+        if (this.isSubmitted === true) {
+          setTimeout(() => {
+            this.router.navigate(['/list']);
+            window.scrollTo(0, 0);
+          }, 1000);
+        }
+      },
+      error: (err) => {
+        this.error = err.message;
+        console.error('Error deleting pet: ', err);
+      },
+    });
 
     console.log(form);
-
-    setTimeout(() => {
-      this.isSubmitted = false;
-      this.router.navigate(['/list']);
-      window.scrollTo(0, 0);
-    }, 1000);
   }
 
   onCancel() {

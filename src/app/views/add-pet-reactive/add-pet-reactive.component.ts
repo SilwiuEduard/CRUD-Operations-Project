@@ -35,12 +35,6 @@ export class AddPetReactiveComponent {
   get id() {
     return this.petForm.get('id');
   }
-  // get catId() {
-  //   return this.petForm.get('category.id');
-  // }
-  // get catName() {
-  //   return this.petForm.get('category.name');
-  // }
   get name() {
     return this.petForm.get('name');
   }

@@ -9,8 +9,9 @@
         class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"
         style="margin-top: 20px"
       >
-        <h2>Add a new pet to the store - Reactive approach</h2>
+        <h2>Add pet - Reactive approach</h2>
 
+        <!-- * === FOR TESTING - CAN BE REMOVED THE BUTTON ===  -->
         <!-- <button class="btn btn-success" (click)="getValues()" type="button">
           getValues
         </button> -->
@@ -70,7 +71,6 @@
 
           <div class="form-group">
             <label class="form-label">Pet Status*</label>
-            <!-- [ngModel]="defaultStatus" -->
             <select
               class="form-control"
               id="status"
@@ -204,11 +204,9 @@
             <hr />
           </div>
 
-          <!-- SUCCESS / ALERT BOOTSTRAP WINDOW  -->
           <div *ngIf="msgSuccess" class="alert alert-success" role="alert">
             <h4 class="alert-heading">Pet Submitted!</h4>
           </div>
-          <!-- SUCCESS / ALERT BOOTSTRAP WINDOW END -->
 
           <button
             class="btn btn-success"

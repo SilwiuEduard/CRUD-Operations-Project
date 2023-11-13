@@ -11,11 +11,11 @@ import { EditPetMatDialogComponent } from '../../components/edit-pet-mat-dialog/
   styleUrls: ['./pet-list.component.css'],
 })
 export class PetListComponent implements OnInit {
-  apiPets: Array<any> = null;
-  selectedPetIndex: number = -1; // because in HTML index value is i + 1
-  filteredPets: any[] = [];
+  apiPets: Array<PetInterface> = null;
+  selectedPetIndex: number = -1; // because in ViewMode index value is shown i + 1
+  filteredPets: PetInterface[] = [];
   singlePetInfo: PetInterface[] = [];
-  selectedPetData: any = null;
+  selectedPetData: PetInterface = null;
   messageSuccess = false;
   id: number; // prop to store index
   // fetchPetsLoading = false; //loading animation

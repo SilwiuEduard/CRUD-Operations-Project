@@ -16,8 +16,6 @@ export class DataStorageService {
   readonly apiPet = `${this.apiHost}/${this.apiVersion}/pet/`;
   readonly apiPetStatus = `${this.apiPet}findByStatus?status=`;
 
-  // pets: PetInterface[] = [];
-
   constructor(private http: HttpClient) {}
 
   getAvailablePets(): Observable<PetInterface> {
