@@ -14,13 +14,13 @@ a) Filter by status (available, pending, sold);
 
 b) Table header should consist of: Index (starting from 1), Name, Status, Actions;
 
-c) In the "Actions" column, there should be buttons for viewing, editing, and deleting an element;
+c) In the "Actions" column, buttons for viewing, editing, and deleting an element;
 
 2. Adding (individual page)
 
-a) There should be validation for mandatory fields (name, status, and an ID of type number);
+a) Validation for mandatory fields (name, status, and an ID of type number);
 
-b) Dropdown options for status are: available, pending, sold. The default status should be "available";
+b) Dropdown options for status: available, pending, sold. The default status: "available";
 
 c) After submitting the form, display a success and error notification;
 
@@ -28,7 +28,7 @@ d) In case of success, after adding, redirect to the list of animals;
 
 3. Editing (individual page)
 
-a) There should be validation for mandatory fields;
+a) Validation for mandatory fields;
 
 b) After submitting the form, display a success and error notification;
 
