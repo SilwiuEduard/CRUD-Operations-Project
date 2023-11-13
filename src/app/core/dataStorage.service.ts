@@ -18,35 +18,33 @@ export class DataStorageService {
 
   // pets: PetInterface[] = [];
 
-  // pets: PetInterface[] = []; // later to change any
-
   constructor(private http: HttpClient) {}
 
-  getAvailablePets(): Observable<any> {
-    return this.http.get<any>(this.apiPetStatus + 'available');
+  getAvailablePets(): Observable<PetInterface> {
+    return this.http.get<PetInterface>(this.apiPetStatus + 'available');
   }
 
-  getPendingPets(): Observable<any> {
-    return this.http.get<any>(this.apiPetStatus + 'pending');
+  getPendingPets(): Observable<PetInterface> {
+    return this.http.get<PetInterface>(this.apiPetStatus + 'pending');
   }
 
-  getSoldPets(): Observable<any> {
-    return this.http.get<any>(this.apiPetStatus + 'sold');
+  getSoldPets(): Observable<PetInterface> {
+    return this.http.get<PetInterface>(this.apiPetStatus + 'sold');
   }
 
-  getPetById(id: any): Observable<any> {
-    return this.http.get<any>(this.apiPet + id);
+  getPetById(id: PetInterface): Observable<PetInterface> {
+    return this.http.get<PetInterface>(this.apiPet + id);
   }
 
-  addPet(petForm: any): Observable<any> {
-    return this.http.post<any>(this.apiPet, petForm);
+  addPet(petForm: any): Observable<PetInterface> {
+    return this.http.post<PetInterface>(this.apiPet, petForm);
   }
 
-  updatePet(data: any): Observable<any> {
-    return this.http.put<any>(this.apiPet, data);
+  updatePet(data: PetInterface): Observable<PetInterface> {
+    return this.http.put<PetInterface>(this.apiPet, data);
   }
 
-  deletePet(id: string): Observable<any> {
-    return this.http.delete<any>(this.apiPet + id);
+  deletePet(id: PetInterface): Observable<PetInterface> {
+    return this.http.delete<PetInterface>(this.apiPet + id);
   }
 }

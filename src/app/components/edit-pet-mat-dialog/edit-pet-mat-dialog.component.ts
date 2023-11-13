@@ -19,11 +19,11 @@ export class EditPetMatDialogComponent {
   error = null;
 
   categories = [
-    { id: 0, name: 'Not selected' },
-    { id: 1, name: 'Dog' },
-    { id: 2, name: 'Cat' },
-    { id: 3, name: 'Bird' },
-    { id: 4, name: 'Fish' },
+    { id: 1, name: 'Not selected' },
+    { id: 2, name: 'Dog' },
+    { id: 3, name: 'Cat' },
+    { id: 4, name: 'Bird' },
+    { id: 5, name: 'Fish' },
   ];
 
   statuses = [
@@ -35,7 +35,7 @@ export class EditPetMatDialogComponent {
   constructor(
     private dataStorageService: DataStorageService,
     private matDialogRef: MatDialogRef<EditPetMatDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) data: any //to change any with PetInterface at the end and test the functionality
+    @Inject(MAT_DIALOG_DATA) data: PetInterface
   ) {
     this.buildForm();
     this.getPetById(data);
@@ -63,7 +63,7 @@ export class EditPetMatDialogComponent {
     });
   }
 
-  getPetById(id: string): void {
+  getPetById(id: PetInterface): void {
     this.dataStorageService.getPetById(id).subscribe({
       next: (res: PetInterface) => {
         this.petEditArray = res;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataStorageService } from '../../core/dataStorage.service';
-import { PetService } from '../../core/pet.service';
+import { PetInterface } from 'src/app/core/pet.interface';
 
 @Component({
   selector: 'app-pet-details',
@@ -11,25 +11,25 @@ import { PetService } from '../../core/pet.service';
 export class PetDetailsComponent implements OnInit {
   petArray: any[] = [];
   error = null;
+  petId: number;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private petService: PetService,
     private dataStorageService: DataStorageService
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       let id: any = Number(params['id']);
-      this.petService.petId = id;
+      this.petId = id;
       this.getPetById(id);
     });
   }
 
-  getPetById(id: any): void {
+  getPetById(id: PetInterface): void {
     this.dataStorageService.getPetById(id).subscribe({
-      next: (responsePet: any) => {
+      next: (responsePet: PetInterface) => {
         this.petArray = [responsePet];
 
         // if (responsePet.photoUrls) {

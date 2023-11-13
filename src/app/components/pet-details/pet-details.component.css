@@ -53,3 +53,7 @@
   width: 100px;
   height: 100px;
 }
+
+li > img {
+  margin: 10px;
+}

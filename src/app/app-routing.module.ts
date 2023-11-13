@@ -7,7 +7,6 @@ import { PetListComponent } from '../app/views/pet-list/pet-list.component';
 import { PetDetailsComponent } from '../app/components/pet-details/pet-details.component';
 import { AddPetComponent } from '../app/views/add-pet/add-pet.component';
 import { AddPetReactiveComponent } from '../app/views/add-pet-reactive/add-pet-reactive.component';
-import { EditPetComponent } from '../app/components/edit-pet/edit-pet.component'; // before deployment to delete
 import { EditPetMatDialogComponent } from '../app/components/edit-pet-mat-dialog/edit-pet-mat-dialog.component';
 // import { PetsResolverService } from './shared/pets-resolver.service';
 
@@ -20,14 +19,9 @@ const appRoutes: Routes = [
     component: PetDetailsComponent,
     // resolve: [PetsResolverService],
   },
-  {
-    path: 'edit/:id',
-    component: EditPetComponent,
-    // resolve: [PetsResolverService],
-  },
+
   { path: 'add', component: AddPetComponent },
   { path: 'addR', component: AddPetReactiveComponent },
-  { path: 'edit', component: EditPetComponent },
   { path: 'editMD', component: EditPetMatDialogComponent },
   { path: 'editMD2', component: EditPetMatDialogComponent },
   { path: '**', redirectTo: '/home' },

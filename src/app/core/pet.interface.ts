@@ -34,7 +34,7 @@ export interface PetInterface {
 //   name: string;
 // }
 
-// === API SERVER - EXAMPLE ===
+// === API SERVER - RESPONSE ===
 
 // {
 //   "id": 0,

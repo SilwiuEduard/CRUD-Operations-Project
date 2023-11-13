@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DataStorageService } from '../../core/dataStorage.service';
-import { PetService } from '../../core/pet.service';
 import { PetInterface } from '../../core/pet.interface';
 import { EditPetMatDialogComponent } from '../../components/edit-pet-mat-dialog/edit-pet-mat-dialog.component';
 
@@ -15,6 +14,7 @@ export class PetListComponent implements OnInit {
   apiPets: Array<any> = null;
   selectedPetIndex: number = -1; // because in HTML index value is i + 1
   filteredPets: any[] = [];
+  singlePetInfo: PetInterface[] = [];
   selectedPetData: any = null;
   messageSuccess = false;
   id: number; // prop to store index
@@ -24,7 +24,6 @@ export class PetListComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private petService: PetService,
     private dataStorageService: DataStorageService,
     private matDialog: MatDialog
   ) {}
@@ -140,8 +139,8 @@ export class PetListComponent implements OnInit {
     this.selectedPetIndex = petIndex;
     this.selectedPetData = this.apiPets[petIndex];
     if (this.selectedPetIndex > -1) {
-      this.petService.singlePetInfo = [];
-      this.petService.addPetInfo(this.selectedPetData);
+      this.singlePetInfo = [];
+      this.singlePetInfo.push(this.selectedPetData);
       this.id = this.selectedPetData.id;
       this.router.navigate(['/view', this.id]);
     }

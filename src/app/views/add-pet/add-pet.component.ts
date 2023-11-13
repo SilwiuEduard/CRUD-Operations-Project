@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { PetModel } from '../../shared/pet.model';
-import { PetService } from '../../core/pet.service';
 import { DataStorageService } from '../../core/dataStorage.service';
 
 @Component({
@@ -19,7 +18,6 @@ export class AddPetComponent {
 
   constructor(
     private router: Router,
-    private petService: PetService,
     private route: ActivatedRoute,
     private dataStorageService: DataStorageService
   ) {}
